@@ -1,9 +1,3 @@
-function timeToSeconds(t) {
-  if (!t) return Infinity;
-  const [min, rest] = t.split(":");
-  return parseInt(min, 10) * 60 + parseFloat(rest);
-}
-
 function getCircuitId() {
   return new URLSearchParams(window.location.search).get("id");
 }
@@ -29,7 +23,7 @@ async function init() {
   ]);
 
   const circuit = circuits.find(c => c.id === id);
-  const rows = allSetups[id] || [];
+  const rows = allSetups.filter(s => trackSlug(s["Track"]) === id);
 
   document.getElementById("circuit-title").innerHTML = circuit
     ? `${flagCell(circuit.countryCode, 32)} ${circuit.name}`
@@ -38,9 +32,9 @@ async function init() {
   document.getElementById("suggest-link").href = suggestUrl(circuit ? circuit.name : "");
 
   if (rows.length > 0) {
-    const best = rows[fastestIndex(rows, "lapTime")];
+    const best = rows[fastestIndex(rows, "Lap Time")];
     document.getElementById("circuit-sub").innerHTML =
-      `Mejor vuelta: <strong class="mono">${best.lapTime}</strong> — ${best.driver} (${best.team})`;
+      `Mejor vuelta: <strong class="mono">${best["Lap Time"]}</strong> — ${best["Driver"]} (${teamFor(best["Driver"])})`;
   } else {
     document.getElementById("circuit-sub").textContent = "Todavía no hay setups cargados para este circuito.";
   }
@@ -66,25 +60,25 @@ function renderRows(rows) {
     return;
   }
 
-  const sorted = [...rows].sort((a, b) => timeToSeconds(a.lapTime) - timeToSeconds(b.lapTime));
-  const fastS1 = fastestIndex(sorted, "sector1");
-  const fastS2 = fastestIndex(sorted, "sector2");
-  const fastS3 = fastestIndex(sorted, "sector3");
+  const sorted = [...rows].sort((a, b) => timeToSeconds(a["Lap Time"]) - timeToSeconds(b["Lap Time"]));
+  const fastS1 = fastestIndex(sorted, "Sector 1");
+  const fastS2 = fastestIndex(sorted, "Sector 2");
+  const fastS3 = fastestIndex(sorted, "Sector 3");
 
   sorted.forEach((r, i) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td>${tyreCell(r.tyre, r.tyreColor)}</td>
-      <td class="mono" style="${i === fastS1 ? "color:var(--purple)" : ""}">${r.sector1}</td>
-      <td class="mono" style="${i === fastS2 ? "color:var(--purple)" : ""}">${r.sector2}</td>
-      <td class="mono" style="${i === fastS3 ? "color:var(--purple)" : ""}">${r.sector3}</td>
-      <td class="mono" style="${i === 0 ? "color:var(--green)" : ""}">${r.lapTime}</td>
-      <td class="mono">${r.wingFront ?? "—"}</td>
-      <td class="mono">${r.wingRear ?? "—"}</td>
-      <td class="mono">${r.brake ?? "—"}</td>
-      <td class="mono">${r.downForce ?? "—"}</td>
-      <td>${r.driver}</td>
-      <td>${teamCell(r.team)}</td>
+      <td>${tyreCell(r["Tyre"])}</td>
+      <td class="mono" style="${i === fastS1 ? "color:var(--purple)" : ""}">${r["Sector 1"]}</td>
+      <td class="mono" style="${i === fastS2 ? "color:var(--purple)" : ""}">${r["Sector 2"]}</td>
+      <td class="mono" style="${i === fastS3 ? "color:var(--purple)" : ""}">${r["Sector 3"]}</td>
+      <td class="mono" style="${i === 0 ? "color:var(--green)" : ""}">${r["Lap Time"]}</td>
+      <td class="mono">${r["Wing Setup"] ?? "—"}</td>
+      <td class="mono">${r["Brake Balance"] ?? "—"}</td>
+      <td class="mono">${r["Suspension"] ?? "—"}</td>
+      <td class="mono">${r["Down Force Level"] ?? "—"}</td>
+      <td>${r["Driver"]}</td>
+      <td>${teamCell(teamFor(r["Driver"]))}</td>
     `;
     tbody.appendChild(tr);
   });

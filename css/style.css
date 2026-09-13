@@ -33,6 +33,16 @@ a { color: inherit; }
   padding: 0 20px 64px;
 }
 
+/* Las tablas son más anchas que una pantalla de celular: en vez de romper
+   el layout o esconder columnas, dejamos que esta franja scrollee sola. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -20px;
+  padding: 0 20px;
+}
+.table-scroll table { min-width: 640px; }
+
 /* ---------- Header / Top bar ---------- */
 
 .topbar {
@@ -45,6 +55,8 @@ a { color: inherit; }
   display: flex;
   align-items: baseline;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
   padding-bottom: 0;
 }
 
@@ -144,11 +156,27 @@ tbody tr.empty td { color: var(--muted); }
   vertical-align: middle;
 }
 
-.flag-img {
+.flag-chip {
+  display: inline-flex;
+  align-items: center;
   vertical-align: middle;
   margin-right: 6px;
+}
+
+.flag-img {
   border-radius: 2px;
   box-shadow: 0 0 0 1px var(--line);
+  display: inline-block;
+}
+
+.flag-fallback {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 2px 4px;
 }
 
 .team-cell { display: inline-flex; align-items: center; }
@@ -256,7 +284,6 @@ tbody tr.empty td { color: var(--muted); }
 .btn {
   display: inline-block;
   background: var(--accent);
-  color: #14090580;
   color: #1a0a06;
   font-weight: 600;
   font-size: 14px;
@@ -276,6 +303,9 @@ footer {
 }
 
 @media (max-width: 640px) {
-  thead th:nth-child(4), tbody td:nth-child(4) { display: none; } /* oculta columna Equipo en mobile */
+  .wrap { padding: 0 14px 48px; }
+  .hero { padding: 28px 0 20px; }
+  .hero-time { font-size: clamp(38px, 15vw, 60px); }
   .suggest-box { flex-direction: column; align-items: flex-start; }
+  .btn { width: 100%; text-align: center; }
 }
