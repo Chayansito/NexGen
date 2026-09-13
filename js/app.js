@@ -56,7 +56,7 @@ function renderRows(summaries) {
   });
 }
 
-Promise.all([loadJSON("data/circuits.json"), loadJSON("data/setups.json")]).then(([circuits, setups]) => {
+Promise.all([loadJSON("data/circuits.json"), loadSetups()]).then(([circuits, setups]) => {
   const summaries = summarize(circuits, setups);
   renderHero(summaries);
   renderRows(summaries);

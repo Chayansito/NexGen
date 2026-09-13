@@ -1,10 +1,29 @@
 // Pegá acá el link de tu Google Form (el de "enviar", no el de "editar").
-const FORM_URL = "https://forms.gle/5AnVvYvQT9iUSgT36";
+const FORM_URL = "https://forms.gle/REEMPLAZAR-CON-TU-FORM";
 
 // Si armaste el prefill de Google Forms para el campo "Circuito", poné acá
 // su nombre de parámetro (ej: "entry.123456789"). Si no, dejalo en null.
 const FORM_CIRCUIT_FIELD = null;
 
+// Si publicaste tu Google Sheet de respuestas como CSV, pegá acá esa URL
+// para que el sitio traiga los datos en vivo, sin que tengas que copiar y
+// pegar nada a mano. Dejalo vacío ("") para seguir usando el archivo local
+// data/setups.json como hasta ahora.
+const SHEET_CSV_URL = "";
+
+// Carga los setups: si hay un SHEET_CSV_URL configurado, los trae en vivo
+// desde la Sheet publicada (usando PapaParse para leer el CSV). Si no,
+// cae al archivo local como respaldo.
+async function loadSetups() {
+  if (SHEET_CSV_URL) {
+    const res = await fetch(SHEET_CSV_URL);
+    const csvText = await res.text();
+    const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+    return parsed.data;
+  }
+  const res = await fetch("data/setups.json");
+  return res.json();
+}
 function suggestUrl(circuitName) {
   if (!FORM_CIRCUIT_FIELD || !circuitName) return FORM_URL;
   const sep = FORM_URL.includes("?") ? "&" : "?";

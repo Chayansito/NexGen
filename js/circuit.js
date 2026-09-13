@@ -19,7 +19,7 @@ async function init() {
   const id = getCircuitId();
   const [circuits, allSetups] = await Promise.all([
     loadJSON("data/circuits.json"),
-    loadJSON("data/setups.json"),
+    loadSetups(),
   ]);
 
   const circuit = circuits.find(c => c.id === id);
