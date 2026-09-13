@@ -151,6 +151,18 @@ a { color: inherit; }
 
 .hero-sub strong { color: var(--text); font-weight: 600; }
 
+.disclaimer {
+  margin: 0 0 24px;
+  padding: 14px 16px;
+  border-left: 3px solid var(--accent2);
+  background: rgba(255, 176, 32, 0.08);
+  border-radius: var(--radius);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.disclaimer strong { color: var(--text); font-weight: 600; }
+
 /* ---------- Tables ---------- */
 
 table {
