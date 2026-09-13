@@ -26,8 +26,7 @@ GitHub Pages corre en Linux, que distingue mayúsculas de minúsculas —a
 diferencia de Windows—. `Melbourne.png` y `melbourne.png` son dos archivos
 distintos para el servidor, aunque en tu compu Windows parezcan "el mismo
 nombre". Si el nombre no es exactamente en minúsculas, la imagen no carga y
-el sitio cae al texto de respaldo (por eso no se veían los logos ni los
-mapas).
+el sitio cae al texto de respaldo.
 
 Regla simple: **todo en minúsculas, espacios reemplazados por guiones.**
 
@@ -42,23 +41,17 @@ Regla simple: **todo en minúsculas, espacios reemplazados por guiones.**
 | Aston Martin | `aston-martin.png` |
 | Haas | `haas.png` |
 
-Ya te renombré los archivos que subiste (incluido el mapa de Suzuka, que
-había quedado como `Susuka.png`) — este zip ya los trae bien. Si suman
-equipos o circuitos nuevos, usá esta misma regla.
-
 ## Cómo se actualizan los datos (un solo archivo)
 
 **No hace falta un JSON por circuito.** `data/setups.json` es un único
 array con todos los intentos de todos los circuitos — el sitio los agrupa
 solo por el campo `"Track"`. Cada vez que quieras actualizar el sitio:
 
-1. Exportá tu Google Sheet completa como JSON (o pedile el export a quien
-   arme el Form → Sheet).
+1. Exportá tu Google Sheet completa como JSON.
 2. Reemplazá el archivo `data/setups.json` entero por ese export.
-3. Subí el cambio a GitHub. Listo — no tocás nada más.
+3. Sube el cambio a GitHub. Listo — no tocás nada más.
 
-El archivo tiene que tener exactamente estas columnas por fila (son las
-mismas que ya usás):
+El archivo tiene que tener exactamente estas columnas por fila:
 
 ```json
 {
@@ -76,23 +69,6 @@ mismas que ya usás):
 }
 ```
 
-Importante: el valor de `"Track"` tiene que coincidir (sin importar
-mayúsculas) con el `id` de ese circuito en `circuits.json` — por eso ahí los
-ids son `"melbourne"`, `"shanghai"`, etc., iguales a como los nombra el Form.
-
-El campo **`Team` ya viene en el export** (lo agregaron al Form) — el sitio
-lo usa directo. Si alguna vez falta en una fila vieja, cae al mapeo
-`DRIVER_TEAMS` en `js/config.js` como respaldo:
-
-```js
-const DRIVER_TEAMS = {
-  "Rodriguez": "NG",
-  "Hoffmann": "NG",
-  "Serizawa": "Audi",
-  "NuevoPiloto": "SuEquipo",
-};
-```
-
 ### Circuitos nuevos
 
 Si agregan un circuito que no está en la lista, sumalo en `circuits.json`
@@ -107,12 +83,6 @@ Compartir → Publicar en la web → formato CSV) y cambien el `fetch("data/setu
 de `app.js`/`circuit.js` por un `fetch()` a esa URL de CSV, parseándolo con
 algo como PapaParse. Lo dejamos afuera de esta versión para que decidan
 ustedes qué respuestas del form quedan publicadas.
-
-## Cómo publicarlo (GitHub Pages)
-
-1. Creá un repo en GitHub y subí todo el contenido de esta carpeta.
-2. Andá a **Settings → Pages** → en "Source" elegí la rama `main` y la carpeta `/root`.
-3. En un par de minutos el sitio queda online en `https://tu-usuario.github.io/tu-repo/`.
 
 ## Cómo dejar que otros sugieran setups
 
@@ -130,36 +100,3 @@ ustedes qué respuestas del form quedan publicadas.
 2. Completá el campo Circuito con un texto de prueba y generá el link.
 3. Copiá el `entry.123456789` que aparece en la URL generada.
 4. Pegalo en `js/config.js`, en `FORM_CIRCUIT_FIELD`.
-
-## Banderas
-
-Se traen automáticamente desde flagcdn.com (el CDN de Flagpedia) usando el
-`countryCode` de `circuits.json` — no hay que subir nada. Si por algún
-motivo no cargan (sin conexión, red bloqueada), el sitio muestra el código
-de país en texto como respaldo en vez de romper el layout. Si después de
-subir esta versión siguen sin verse, probá:
-- Refrescar forzando que no use caché (Ctrl/Cmd + Shift + R).
-- Confirmar que el repo en GitHub tiene esta versión de `circuits.json`
-  (con `"countryCode"`) y de `js/config.js` — versiones viejas del sitio
-  usaban emoji de bandera, que en Windows se ve como texto ("AU") en vez
-  de la imagen.
-
-## Logos de equipo e imágenes de neumático
-
-- Equipo: `assets/teams/<equipo-en-minusculas>.png` (ej. `ng.png`).
-- Neumático: `assets/tyres/<compuesto-en-minusculas>.png` (ej. `soft.png`,
-  `intermediate.png`).
-
-Mientras no subas el archivo, el sitio muestra el texto o el punto de color
-de respaldo — no hace falta subir todo de una.
-
-## Mapas de circuito
-
-`assets/tracks/<id-del-circuito>.png`. Si no existe, la página de detalle
-no muestra el mapa, sin romperse.
-
-## Mobile
-
-Las tablas son más anchas que una pantalla de celular (11 columnas en la
-vista de circuito), así que en mobile quedan con scroll horizontal propio
-en vez de romper el resto de la página o esconder columnas.
