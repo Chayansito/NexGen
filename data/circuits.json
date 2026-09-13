@@ -1,0 +1,21 @@
+[
+  { "id": "melbourne",   "name": "Melbourne, Australia",        "flag": "🇦🇺", "bestTime": "01:07.369", "wingFront": 14, "wingRear": 6,  "brake": -12, "downForce": 132, "driver": "Rodriguez", "team": "NG" },
+  { "id": "shanghai",    "name": "Shanghai, China",             "flag": "🇨🇳", "bestTime": "01:18.668", "wingFront": 12, "wingRear": 6,  "brake": -10, "downForce": 132, "driver": "Hoffmann",  "team": "NG" },
+  { "id": "suzuka",      "name": "Suzuka, Japón",                "flag": "🇯🇵", "bestTime": "01:17.684", "wingFront": 20, "wingRear": 4,  "brake": -4,  "downForce": 152, "driver": "Rodriguez", "team": "NG" },
+  { "id": "sakhir",      "name": "Sakhir, Bahréin",              "flag": "🇧🇭", "bestTime": "01:14.864", "wingFront": 12, "wingRear": 7,  "brake": -12, "downForce": 138, "driver": "Hoffmann",  "team": "NG" },
+  { "id": "jeddah",      "name": "Jeddah, Arabia Saudí",         "flag": "🇸🇦", "bestTime": "01:16.196", "wingFront": 10, "wingRear": 4,  "brake": -4,  "downForce": 128, "driver": "Hoffmann",  "team": "NG" },
+  { "id": "miami",       "name": "Miami, Estados Unidos",       "flag": "🇺🇸", "bestTime": "01:13.283", "wingFront": 14, "wingRear": 6,  "brake": -10, "downForce": 136, "driver": "Hoffmann",  "team": "NG" },
+  { "id": "montreal",    "name": "Montreal, Canadá",             "flag": "🇨🇦", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "montecarlo",  "name": "Montecarlo, Mónaco",           "flag": "🇲🇨", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "montmelo",    "name": "Montmeló, España",             "flag": "🇪🇸", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "knittelfeld", "name": "Knittelfeld, Austria",         "flag": "🇦🇹", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "silverstone", "name": "Silverstone, Gran Bretaña",    "flag": "🇬🇧", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "spa",         "name": "Spa-Francorchamps, Bélgica",   "flag": "🇧🇪", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "mogyorod",    "name": "Mogyoród, Hungría",            "flag": "🇭🇺", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "zandvoort",   "name": "Zandvoort, Países Bajos",      "flag": "🇳🇱", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "monza",       "name": "Monza, Italia",                "flag": "🇮🇹", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "madrid",      "name": "Madrid, España",               "flag": "🇪🇸", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "baku",        "name": "Bakú, Azerbaiyán",             "flag": "🇦🇿", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "singapur",    "name": "Singapur, Singapur",           "flag": "🇸🇬", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null },
+  { "id": "austin",      "name": "Travis County, Austin, EE.UU.", "flag": "🇺🇸", "bestTime": null, "wingFront": null, "wingRear": null, "brake": null, "downForce": null, "driver": null, "team": null }
+]

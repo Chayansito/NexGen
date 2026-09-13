@@ -1,0 +1,9 @@
+{
+  "melbourne": [
+    { "tyre": "#e02020", "sector1": "00:23.270", "sector2": "00:15.950", "sector3": "00:28.149", "lapTime": "01:07.369", "wingFront": 14, "wingRear": 6, "brake": -12, "downForce": 132, "driver": "Rodriguez", "team": "NG" },
+    { "tyre": "#3fae3f", "sector1": "00:23.697", "sector2": "00:15.383", "sector3": "00:28.383", "lapTime": "01:07.463", "wingFront": 14, "wingRear": 6, "brake": -12, "downForce": 132, "driver": "Hoffmann",  "team": "NG" },
+    { "tyre": "#e0d020", "sector1": "00:23.977", "sector2": "00:15.983", "sector3": "00:28.733", "lapTime": "01:08.693", "wingFront": 14, "wingRear": 6, "brake": -12, "downForce": 132, "driver": "Serizawa",  "team": "Audi" },
+    { "tyre": "#3070e0", "sector1": "00:24.501", "sector2": "00:15.866", "sector3": "00:29.450", "lapTime": "01:09.817", "wingFront": 18, "wingRear": 6, "brake": -8,  "downForce": 142, "driver": "Hoffmann",  "team": "NG" },
+    { "tyre": "#b02020", "sector1": "00:24.937", "sector2": "00:16.699", "sector3": "00:30.166", "lapTime": "01:11.802", "wingFront": 16, "wingRear": 4, "brake": -14, "downForce": 140, "driver": "Rodriguez", "team": "NG" }
+  ]
+}

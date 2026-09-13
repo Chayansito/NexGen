@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup — Monoposto Setups</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="index.html" class="wordmark">MONOPOSTO<span>.</span>SETUPS</a>
+    <a href="index.html" class="back-link">← Todos los circuitos</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="circuit-head">
+    <h1 class="circuit-title" id="circuit-title">Cargando...</h1>
+    <p class="hero-sub" id="circuit-sub"></p>
+  </div>
+
+  <img id="track-map" class="track-map" style="display:none" alt="Mapa del circuito">
+  <div id="no-map" class="no-map" style="display:none">
+    Todavía no hay un mapa cargado para este circuito.<br>
+    Agregá una imagen en <code>assets/tracks/</code> con el mismo nombre que el id del circuito.
+  </div>
+
+  <p class="section-title">Setups probados por la comunidad</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Sector 1</th>
+        <th>Sector 2</th>
+        <th>Sector 3</th>
+        <th>Vuelta</th>
+        <th>Ala del.</th>
+        <th>Ala tras.</th>
+        <th>Freno</th>
+        <th>DF</th>
+        <th>Piloto</th>
+        <th>Equipo</th>
+      </tr>
+    </thead>
+    <tbody id="setup-rows">
+      <tr><td colspan="11" style="color:var(--muted)">Cargando...</td></tr>
+    </tbody>
+  </table>
+
+  <div class="suggest-box">
+    <p>¿Probaste un setup distinto en este circuito? Compartilo con el resto del equipo.</p>
+    <a class="btn" id="suggest-link" href="#" target="_blank" rel="noopener">Sugerir un setup</a>
+  </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/circuit.js"></script>
+</body>
+</html>
