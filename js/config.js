@@ -1,5 +1,5 @@
 // Pegá acá el link de tu Google Form (el de "enviar", no el de "editar").
-const FORM_URL = "https://forms.gle/REEMPLAZAR-CON-TU-FORM";
+const FORM_URL = "https://forms.gle/3FJRtqHYv9FufpoC8";
 
 // Si armaste el prefill de Google Forms para el campo "Circuito", poné acá
 // su nombre de parámetro (ej: "entry.123456789"). Si no, dejalo en null.
@@ -9,7 +9,7 @@ const FORM_CIRCUIT_FIELD = null;
 // para que el sitio traiga los datos en vivo, sin que tengas que copiar y
 // pegar nada a mano. Dejalo vacío ("") para seguir usando el archivo local
 // data/setups.json como hasta ahora.
-const SHEET_CSV_URL = "";
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vShPTNgVoClsfo6qXxPKgh-uKwPqKDHB8rtaxROlVk1mCZ4_7TKIML5wBxd08xOfP9Q2Gf5b5o2Fi1b/pub?gid=906394055&single=true&output=csv";
 
 // Carga los setups: si hay un SHEET_CSV_URL configurado, los trae en vivo
 // desde la Sheet publicada (usando PapaParse para leer el CSV). Si no,
