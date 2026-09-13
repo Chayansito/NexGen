@@ -26,7 +26,7 @@ async function init() {
   const rows = allSetups.filter(s => trackSlug(s["Track"]) === id);
 
   document.getElementById("circuit-title").innerHTML = circuit
-    ? `${flagCell(circuit.countryCode, 32)} ${circuit.name}`
+    ? `${flagCell(circuit.flag, circuit.countryCode, 36)} ${circuit.name}`
     : "Circuito no encontrado";
 
   document.getElementById("suggest-link").href = suggestUrl(circuit ? circuit.name : "");
@@ -72,7 +72,7 @@ function renderRows(rows) {
       <td class="mono" style="${i === fastS1 ? "color:var(--purple)" : ""}">${r["Sector 1"]}</td>
       <td class="mono" style="${i === fastS2 ? "color:var(--purple)" : ""}">${r["Sector 2"]}</td>
       <td class="mono" style="${i === fastS3 ? "color:var(--purple)" : ""}">${r["Sector 3"]}</td>
-      <td class="mono" style="${i === 0 ? "color:var(--green)" : ""}">${r["Lap Time"]}</td>
+      <td class="mono">${i === 0 ? `<span class="fastest-badge">${r["Lap Time"]}</span>` : r["Lap Time"]}</td>
       <td class="mono">${r["Wing Setup"] ?? "—"}</td>
       <td class="mono">${r["Brake Balance"] ?? "—"}</td>
       <td class="mono">${r["Suspension"] ?? "—"}</td>

@@ -19,20 +19,16 @@ function renderHero(summaries) {
   const top = withData.reduce((a, b) => (timeToSeconds(a.best["Lap Time"]) < timeToSeconds(b.best["Lap Time"]) ? a : b));
   document.getElementById("hero-time").textContent = top.best["Lap Time"];
   document.getElementById("hero-sub").innerHTML =
-    `${flagCell(top.countryCode)} <strong>${top.name}</strong> — ${top.best["Driver"]} (${getTeam(top.best)})`;
+    `${flagCell(top.flag, top.countryCode)} <strong>${top.name}</strong> — ${top.best["Driver"]} (${getTeam(top.best)})`;
 }
 
 function renderRows(summaries) {
-  const sorted = [...summaries].sort((a, b) => {
-    const ta = a.best ? timeToSeconds(a.best["Lap Time"]) : Infinity;
-    const tb = b.best ? timeToSeconds(b.best["Lap Time"]) : Infinity;
-    return ta - tb;
-  });
-
+  // Orden fijo del calendario (el orden en que vienen en circuits.json),
+  // no por mejor tiempo.
   const tbody = document.getElementById("circuit-rows");
   tbody.innerHTML = "";
 
-  sorted.forEach((c, i) => {
+  summaries.forEach((c, i) => {
     const tr = document.createElement("tr");
 
     if (c.best) {
@@ -40,7 +36,7 @@ function renderRows(summaries) {
       tr.onclick = () => (window.location.href = `circuit.html?id=${c.id}`);
       tr.innerHTML = `
         <td class="num-idx">${i + 1}</td>
-        <td>${flagCell(c.countryCode)} ${c.name}</td>
+        <td>${flagCell(c.flag, c.countryCode)} ${c.name}</td>
         <td class="mono">${c.best["Lap Time"]}</td>
         <td>${teamCell(getTeam(c.best))}</td>
         <td>${c.best["Driver"]}</td>
@@ -51,7 +47,7 @@ function renderRows(summaries) {
       tr.className = "empty";
       tr.innerHTML = `
         <td class="num-idx">${i + 1}</td>
-        <td>${flagCell(c.countryCode)} ${c.name}</td>
+        <td>${flagCell(c.flag, c.countryCode)} ${c.name}</td>
         <td colspan="4">Sin datos todavía</td>
         <td><a class="suggest-inline" href="${suggestUrl(c.name)}" target="_blank" rel="noopener">Sugerir setup</a></td>
       `;

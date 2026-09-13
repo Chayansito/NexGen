@@ -22,11 +22,14 @@ function getTeam(row) {
   return row["Team"] || DRIVER_TEAMS[row["Driver"]] || "—";
 }
 
-// Convierte "Melbourne" -> "melbourne" para que matchee con el id de
-// circuits.json. Si en algún momento el nombre del circuito en el Form
-// no coincide con el id, se puede mapear acá también.
+// Convierte "Melbourne" -> "melbourne", "São Paulo" -> "sao-paulo", etc,
+// para que matchee con el id de circuits.json sin importar tildes o espacios.
 function trackSlug(trackName) {
-  return (trackName || "").trim().toLowerCase();
+  return (trackName || "")
+    .trim()
+    .toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // saca tildes
+    .replace(/\s+/g, "-");
 }
 
 // "0:24.501" o "00:24.501" -> segundos, para poder comparar/ordenar tiempos.
@@ -39,16 +42,16 @@ function timeToSeconds(t) {
 
 // ---------- Helpers de imagen con respaldo automático ----------
 
-// Bandera del país, servida por flagcdn.com (el CDN que usa Flagpedia).
-// Si por lo que sea la imagen no carga (ej. sin internet, bloqueo de red),
-// cae a mostrar el código de país en texto en vez de romper el layout.
-function flagCell(countryCode, size = 28) {
-  if (!countryCode) return "";
-  const code = countryCode.toLowerCase();
+// Bandera del circuito. Usa el link directo que carguen en circuits.json
+// (campo "flag"). Si por lo que sea no carga, cae a mostrar el código de
+// país en texto en vez de romper el layout.
+function flagCell(flagUrl, countryCode, size = 28) {
+  if (!flagUrl) return "";
+  const alt = (countryCode || "").toUpperCase();
   return `<span class="flag-chip">` +
-    `<img src="https://flagcdn.com/w${size}/${code}.png" class="flag-img" alt="${code.toUpperCase()}" width="${size}" ` +
+    `<img src="${flagUrl}" class="flag-img" alt="${alt}" width="${size}" ` +
     `onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">` +
-    `<span class="flag-fallback" style="display:none">${code.toUpperCase()}</span>` +
+    `<span class="flag-fallback" style="display:none">${alt}</span>` +
     `</span>`;
 }
 
