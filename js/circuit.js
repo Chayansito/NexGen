@@ -34,7 +34,7 @@ async function init() {
   if (rows.length > 0) {
     const best = rows[fastestIndex(rows, "Lap Time")];
     document.getElementById("circuit-sub").innerHTML =
-      `Mejor vuelta: <strong class="mono">${best["Lap Time"]}</strong> — ${best["Driver"]} (${teamFor(best["Driver"])})`;
+      `Mejor vuelta: <strong class="mono">${best["Lap Time"]}</strong> — ${best["Driver"]} (${getTeam(best)})`;
   } else {
     document.getElementById("circuit-sub").textContent = "Todavía no hay setups cargados para este circuito.";
   }
@@ -78,7 +78,7 @@ function renderRows(rows) {
       <td class="mono">${r["Suspension"] ?? "—"}</td>
       <td class="mono">${r["Down Force Level"] ?? "—"}</td>
       <td>${r["Driver"]}</td>
-      <td>${teamCell(teamFor(r["Driver"]))}</td>
+      <td>${teamCell(getTeam(r))}</td>
     `;
     tbody.appendChild(tr);
   });

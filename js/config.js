@@ -11,15 +11,15 @@ function suggestUrl(circuitName) {
   return `${FORM_URL}${sep}${FORM_CIRCUIT_FIELD}=${encodeURIComponent(circuitName)}`;
 }
 
-// El export de setups no trae equipo, así que lo sacamos del piloto.
-// Agregá acá cualquier piloto nuevo que sumen.
+// El export ahora trae "Team" directo. Si alguna fila vieja no lo tuviera,
+// caemos a este mapeo por piloto como respaldo.
 const DRIVER_TEAMS = {
-  "Rodriguez": "NG",
-  "Hoffmann": "NG",
+  "Rodriguez": "NexGen",
+  "Hoffmann": "NexGen",
   "Serizawa": "Audi",
 };
-function teamFor(driver) {
-  return DRIVER_TEAMS[driver] || "—";
+function getTeam(row) {
+  return row["Team"] || DRIVER_TEAMS[row["Driver"]] || "—";
 }
 
 // Convierte "Melbourne" -> "melbourne" para que matchee con el id de
@@ -42,7 +42,7 @@ function timeToSeconds(t) {
 // Bandera del país, servida por flagcdn.com (el CDN que usa Flagpedia).
 // Si por lo que sea la imagen no carga (ej. sin internet, bloqueo de red),
 // cae a mostrar el código de país en texto en vez de romper el layout.
-function flagCell(countryCode, size = 24) {
+function flagCell(countryCode, size = 28) {
   if (!countryCode) return "";
   const code = countryCode.toLowerCase();
   return `<span class="flag-chip">` +

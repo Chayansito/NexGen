@@ -113,21 +113,21 @@ a { color: inherit; }
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 thead th {
   text-align: left;
   font-weight: 500;
   color: var(--muted);
-  font-size: 12px;
-  padding: 0 10px 10px;
+  font-size: 12.5px;
+  padding: 0 12px 12px;
   border-bottom: 1px solid var(--line);
   white-space: nowrap;
 }
 
 tbody td {
-  padding: 12px 10px;
+  padding: 15px 12px;
   border-bottom: 1px solid var(--line);
   white-space: nowrap;
 }
@@ -150,8 +150,8 @@ tbody tr.empty td { color: var(--muted); }
 }
 
 .tyre-dot {
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   vertical-align: middle;
 }
@@ -182,9 +182,9 @@ tbody tr.empty td { color: var(--muted); }
 .team-cell { display: inline-flex; align-items: center; }
 
 .team-logo {
-  height: 22px;
+  height: 32px;
   width: auto;
-  max-width: 64px;
+  max-width: 96px;
   object-fit: contain;
   vertical-align: middle;
 }
@@ -195,16 +195,16 @@ tbody tr.empty td { color: var(--muted); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 6px;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
   background: var(--panel);
   border: 1px solid var(--line);
 }
 
 .tyre-img {
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   object-fit: contain;
 }
 

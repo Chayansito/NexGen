@@ -19,7 +19,7 @@ function renderHero(summaries) {
   const top = withData.reduce((a, b) => (timeToSeconds(a.best["Lap Time"]) < timeToSeconds(b.best["Lap Time"]) ? a : b));
   document.getElementById("hero-time").textContent = top.best["Lap Time"];
   document.getElementById("hero-sub").innerHTML =
-    `${flagCell(top.countryCode)} <strong>${top.name}</strong> — ${top.best["Driver"]} (${teamFor(top.best["Driver"])})`;
+    `${flagCell(top.countryCode)} <strong>${top.name}</strong> — ${top.best["Driver"]} (${getTeam(top.best)})`;
 }
 
 function renderRows(summaries) {
@@ -42,7 +42,7 @@ function renderRows(summaries) {
         <td class="num-idx">${i + 1}</td>
         <td>${flagCell(c.countryCode)} ${c.name}</td>
         <td class="mono">${c.best["Lap Time"]}</td>
-        <td>${teamCell(teamFor(c.best["Driver"]))}</td>
+        <td>${teamCell(getTeam(c.best))}</td>
         <td>${c.best["Driver"]}</td>
         <td class="mono">${c.best["Down Force Level"]}</td>
         <td class="arrow">→</td>

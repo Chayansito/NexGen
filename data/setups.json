@@ -10,7 +10,8 @@
     "Brake Balance": "6",
     "Suspension": "-8",
     "Down Force Level": "142",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Melbourne",
@@ -23,7 +24,8 @@
     "Brake Balance": "6",
     "Suspension": "-12",
     "Down Force Level": "132",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Melbourne",
@@ -36,7 +38,8 @@
     "Brake Balance": "4",
     "Suspension": "-14",
     "Down Force Level": "140",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Melbourne",
@@ -49,7 +52,8 @@
     "Brake Balance": "6",
     "Suspension": "-12",
     "Down Force Level": "132",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Shanghai",
@@ -62,7 +66,8 @@
     "Brake Balance": "5",
     "Suspension": "-6",
     "Down Force Level": "128",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Shanghai",
@@ -75,7 +80,8 @@
     "Brake Balance": "5",
     "Suspension": "-6",
     "Down Force Level": "128",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Shanghai",
@@ -88,7 +94,8 @@
     "Brake Balance": "6",
     "Suspension": "-10",
     "Down Force Level": "132",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Suzuka",
@@ -101,7 +108,8 @@
     "Brake Balance": "5",
     "Suspension": "-6",
     "Down Force Level": "158",
-    "Driver": "Serizawa"
+    "Driver": "Serizawa",
+    "Team": "Audi"
   },
   {
     "Track": "Suzuka",
@@ -114,7 +122,8 @@
     "Brake Balance": "5",
     "Suspension": "-6",
     "Down Force Level": "158",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Suzuka",
@@ -127,7 +136,8 @@
     "Brake Balance": "4",
     "Suspension": "-4",
     "Down Force Level": "152",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Suzuka",
@@ -140,7 +150,8 @@
     "Brake Balance": "4",
     "Suspension": "-4",
     "Down Force Level": "152",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Shanghai",
@@ -153,7 +164,8 @@
     "Brake Balance": "6",
     "Suspension": "-10",
     "Down Force Level": "132",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Sakhir",
@@ -166,7 +178,8 @@
     "Brake Balance": "7",
     "Suspension": "-12",
     "Down Force Level": "138",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Sakhir",
@@ -179,7 +192,8 @@
     "Brake Balance": "7",
     "Suspension": "-12",
     "Down Force Level": "138",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Sakhir",
@@ -192,7 +206,8 @@
     "Brake Balance": "7",
     "Suspension": "-12",
     "Down Force Level": "138",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Sakhir",
@@ -205,7 +220,8 @@
     "Brake Balance": "7",
     "Suspension": "-12",
     "Down Force Level": "138",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Sakhir",
@@ -218,7 +234,8 @@
     "Brake Balance": "7",
     "Suspension": "-12",
     "Down Force Level": "138",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Sakhir",
@@ -231,7 +248,8 @@
     "Brake Balance": "7",
     "Suspension": "-12",
     "Down Force Level": "138",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Sakhir",
@@ -244,7 +262,8 @@
     "Brake Balance": "7",
     "Suspension": "-12",
     "Down Force Level": "138",
-    "Driver": "Serizawa"
+    "Driver": "Serizawa",
+    "Team": "Audi"
   },
   {
     "Track": "Melbourne",
@@ -257,7 +276,8 @@
     "Brake Balance": "6",
     "Suspension": "-12",
     "Down Force Level": "132",
-    "Driver": "Serizawa"
+    "Driver": "Serizawa",
+    "Team": "Audi"
   },
   {
     "Track": "Jeddah",
@@ -270,7 +290,8 @@
     "Brake Balance": "5",
     "Suspension": "-6",
     "Down Force Level": "145",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Jeddah",
@@ -283,7 +304,8 @@
     "Brake Balance": "4",
     "Suspension": "-4",
     "Down Force Level": "128",
-    "Driver": "Rodriguez"
+    "Driver": "Rodriguez",
+    "Team": "NexGen"
   },
   {
     "Track": "Jeddah",
@@ -296,7 +318,8 @@
     "Brake Balance": "4",
     "Suspension": "-4",
     "Down Force Level": "128",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   },
   {
     "Track": "Miami",
@@ -309,6 +332,7 @@
     "Brake Balance": "6",
     "Suspension": "-10",
     "Down Force Level": "136",
-    "Driver": "Hoffmann"
+    "Driver": "Hoffmann",
+    "Team": "NexGen"
   }
 ]

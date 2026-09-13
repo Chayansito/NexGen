@@ -20,6 +20,32 @@ assets/teams/            → logos de equipo (opcional)
 assets/tyres/            → imágenes de neumático (opcional)
 ```
 
+## Reglas de nombres de archivo (¡importante!)
+
+GitHub Pages corre en Linux, que distingue mayúsculas de minúsculas —a
+diferencia de Windows—. `Melbourne.png` y `melbourne.png` son dos archivos
+distintos para el servidor, aunque en tu compu Windows parezcan "el mismo
+nombre". Si el nombre no es exactamente en minúsculas, la imagen no carga y
+el sitio cae al texto de respaldo (por eso no se veían los logos ni los
+mapas).
+
+Regla simple: **todo en minúsculas, espacios reemplazados por guiones.**
+
+| Circuito / Equipo | Nombre de archivo correcto |
+|---|---|
+| Melbourne | `melbourne.png` |
+| Shanghai | `shanghai.png` |
+| Suzuka | `suzuka.png` |
+| NexGen | `nexgen.png` |
+| Audi | `audi.png` |
+| Alpine | `alpine.png` |
+| Aston Martin | `aston-martin.png` |
+| Haas | `haas.png` |
+
+Ya te renombré los archivos que subiste (incluido el mapa de Suzuka, que
+había quedado como `Susuka.png`) — este zip ya los trae bien. Si suman
+equipos o circuitos nuevos, usá esta misma regla.
+
 ## Cómo se actualizan los datos (un solo archivo)
 
 **No hace falta un JSON por circuito.** `data/setups.json` es un único
@@ -54,9 +80,9 @@ Importante: el valor de `"Track"` tiene que coincidir (sin importar
 mayúsculas) con el `id` de ese circuito en `circuits.json` — por eso ahí los
 ids son `"melbourne"`, `"shanghai"`, etc., iguales a como los nombra el Form.
 
-El campo **Equipo no viene en el export** — el sitio lo deduce del piloto
-usando el mapeo `DRIVER_TEAMS` en `js/config.js`. Si suman un piloto nuevo,
-agregalo ahí:
+El campo **`Team` ya viene en el export** (lo agregaron al Form) — el sitio
+lo usa directo. Si alguna vez falta en una fila vieja, cae al mapeo
+`DRIVER_TEAMS` en `js/config.js` como respaldo:
 
 ```js
 const DRIVER_TEAMS = {
