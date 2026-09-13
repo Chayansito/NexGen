@@ -1,5 +1,5 @@
 // Pegá acá el link de tu Google Form (el de "enviar", no el de "editar").
-const FORM_URL = "https://forms.gle/REEMPLAZAR-CON-TU-FORM";
+const FORM_URL = "https://forms.gle/5AnVvYvQT9iUSgT36";
 
 // Si armaste el prefill de Google Forms para el campo "Circuito", poné acá
 // su nombre de parámetro (ej: "entry.123456789"). Si no, dejalo en null.
