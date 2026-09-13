@@ -198,11 +198,14 @@ tbody tr.empty td { color: var(--muted); }
   color: var(--muted);
 }
 
-.num-idx::before {
-  content: "P";
-  color: var(--accent);
-  font-size: 11px;
-  margin-right: 1px;
+.fastest-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #d9baff, var(--purple));
+  color: #2a0a4d;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(180,85,255,0.4);
 }
 
 .flag-chip {
