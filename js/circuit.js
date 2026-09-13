@@ -31,8 +31,8 @@ async function init() {
   const circuit = circuits.find(c => c.id === id);
   const rows = allSetups[id] || [];
 
-  document.getElementById("circuit-title").textContent = circuit
-    ? `${circuit.flag} ${circuit.name}`
+  document.getElementById("circuit-title").innerHTML = circuit
+    ? `${flagCell(circuit.countryCode, 32)} ${circuit.name}`
     : "Circuito no encontrado";
 
   document.getElementById("suggest-link").href = suggestUrl(circuit ? circuit.name : "");
@@ -74,7 +74,7 @@ function renderRows(rows) {
   sorted.forEach((r, i) => {
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td><span class="tyre-dot" style="background:${r.tyre || "#888"}"></span></td>
+      <td>${tyreCell(r.tyre, r.tyreColor)}</td>
       <td class="mono" style="${i === fastS1 ? "color:var(--purple)" : ""}">${r.sector1}</td>
       <td class="mono" style="${i === fastS2 ? "color:var(--purple)" : ""}">${r.sector2}</td>
       <td class="mono" style="${i === fastS3 ? "color:var(--purple)" : ""}">${r.sector3}</td>
@@ -84,7 +84,7 @@ function renderRows(rows) {
       <td class="mono">${r.brake ?? "—"}</td>
       <td class="mono">${r.downForce ?? "—"}</td>
       <td>${r.driver}</td>
-      <td>${r.team}</td>
+      <td>${teamCell(r.team)}</td>
     `;
     tbody.appendChild(tr);
   });

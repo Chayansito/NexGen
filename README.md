@@ -74,3 +74,31 @@ chico si más adelante lo quieren así.
 Poné una imagen en `assets/tracks/<id-del-circuito>.png` (mismo id que usan
 en `circuits.json`, ej. `melbourne.png`). Si no existe, la página de detalle
 simplemente no muestra el mapa, sin romperse.
+
+## Logos de equipo
+
+Poné el logo en `assets/teams/<equipo-en-minusculas>.png`. El nombre del
+archivo sale del campo `team` de los JSON, en minúsculas y con guiones en
+vez de espacios. Ejemplos: equipo `"NG"` → `assets/teams/ng.png`, equipo
+`"Red Bull Racing"` → `assets/teams/red-bull-racing.png`.
+
+Si el archivo todavía no existe, la tabla muestra el nombre del equipo en
+texto en su lugar — no hace falta subir todos los logos de una para que el
+sitio funcione.
+
+## Imágenes de neumático
+
+Poné la imagen en `assets/tyres/<compuesto>.png`, usando el nombre del
+campo `tyre` de `setups.json`: `soft.png`, `medium.png`, `hard.png`,
+`intermediate.png`, `wet.png` (podés agregar los compuestos que use tu
+juego). El círculo de color de siempre queda como respaldo si el archivo
+no existe todavía. En la tabla, la imagen se muestra dentro de un chip
+oscuro para que no choque contra el fondo negro.
+
+## Banderas
+
+Las banderas se traen automáticamente desde flagcdn.com (el CDN de
+Flagpedia) usando el código de país de dos letras que ya está cargado en
+`countryCode` dentro de `circuits.json` — no hace falta subir nada. Si
+agregás un circuito nuevo, solo agregá el código ISO del país
+(minúsculas, ej. `"br"` para Brasil) y la bandera aparece sola.

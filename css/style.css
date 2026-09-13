@@ -138,11 +138,46 @@ tbody tr.empty td { color: var(--muted); }
 }
 
 .tyre-dot {
-  display: inline-block;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   vertical-align: middle;
+}
+
+.flag-img {
+  vertical-align: middle;
+  margin-right: 6px;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.team-cell { display: inline-flex; align-items: center; }
+
+.team-logo {
+  height: 22px;
+  width: auto;
+  max-width: 64px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+/* chip oscuro detrás del neumático para que un PNG con fondo claro
+   o transparente no choque contra el negro de la tabla */
+.tyre-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+}
+
+.tyre-img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
 }
 
 .suggest-inline {

@@ -15,7 +15,7 @@ function renderHero(circuits) {
   const best = withTime.reduce((a, b) => (timeToSeconds(a.bestTime) < timeToSeconds(b.bestTime) ? a : b));
   document.getElementById("hero-time").textContent = best.bestTime;
   document.getElementById("hero-sub").innerHTML =
-    `${best.flag} <strong>${best.name}</strong> — ${best.driver} (${best.team})`;
+    `${flagCell(best.countryCode)} <strong>${best.name}</strong> — ${best.driver} (${best.team})`;
 }
 
 function renderRows(circuits) {
@@ -31,9 +31,9 @@ function renderRows(circuits) {
       tr.onclick = () => (window.location.href = `circuit.html?id=${c.id}`);
       tr.innerHTML = `
         <td class="num-idx">${i + 1}</td>
-        <td>${c.flag} ${c.name}</td>
+        <td>${flagCell(c.countryCode)} ${c.name}</td>
         <td class="mono">${c.bestTime}</td>
-        <td>${c.team}</td>
+        <td>${teamCell(c.team)}</td>
         <td>${c.driver}</td>
         <td class="mono">${c.downForce}</td>
         <td class="arrow">→</td>
@@ -42,7 +42,7 @@ function renderRows(circuits) {
       tr.className = "empty";
       tr.innerHTML = `
         <td class="num-idx">${i + 1}</td>
-        <td>${c.flag} ${c.name}</td>
+        <td>${flagCell(c.countryCode)} ${c.name}</td>
         <td colspan="4">Sin datos todavía</td>
         <td><a class="suggest-inline" href="${suggestUrl(c.name)}" target="_blank" rel="noopener">Sugerir setup</a></td>
       `;
