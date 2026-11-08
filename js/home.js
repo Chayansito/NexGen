@@ -36,6 +36,22 @@ function renderConstructors(constructors) {
     </tr>`).join("");
 }
 
+function renderHomeDrivers(drivers) {
+  const ours = drivers.map((d, i) => ({ d, i })).filter(({ d }) => d.TEAM === OUR_TEAM);
+  document.getElementById("home-drivers").innerHTML = ours.map(({ d, i }) => `
+    <article class="mini-driver">
+      <div class="driver-photo">
+        ${photoImg(surname(d.DRIVER) + ".png", d.DRIVER, "driver-photo-img")}
+        <span class="photo-fallback" style="display:none">${esc(initials(d.DRIVER))}</span>
+      </div>
+      <div class="mini-driver-body">
+        <h3>${esc(d.DRIVER)}</h3>
+        ${nationalityLine(d.DRIVER)}
+        <span class="mini-meta mono">${ordinal(i + 1)} · ${d.pts} pts</span>
+      </div>
+    </article>`).join("") + `<a class="btn-ghost" href="pilotos.html">Ver resultados de los pilotos</a>`;
+}
+
 function showError(err) {
   console.error(err);
   const msg = `<tr><td colspan="4" style="color:var(--muted)">No se pudo cargar la clasificación. Probá recargar la página.</td></tr>`;
@@ -47,4 +63,5 @@ loadStandings().then(s => {
   renderSeason(s);
   renderDrivers(s.drivers);
   renderConstructors(s.constructors);
+  renderHomeDrivers(s.drivers);
 }).catch(showError);

@@ -6,6 +6,22 @@
 
 const OUR_TEAM = "NexGen";
 
+// Nacionalidad de los pilotos de NexGen (texto + bandera). La clave es el nombre
+// tal cual aparece en F1_2026.json.
+const DRIVER_INFO = {
+  "Gabriel Rodriguez": { nationality: "Mexicano", flag: "https://flagpedia.net/data/flags/w580/mx.webp", cc: "mx" },
+  "Dani Hoffmann":     { nationality: "Alemana",  flag: "https://flagpedia.net/data/flags/w580/de.webp", cc: "de" },
+};
+
+function nationalityLine(name) {
+  const i = DRIVER_INFO[name];
+  return i ? `<span class="nat">${flagCell(i.flag, i.cc, 22)}<span>${esc(i.nationality)}</span></span>` : "";
+}
+
+// "Dani Hoffmann" -> "Hoffmann" (nombre del archivo de la foto) / "DH" (respaldo)
+function surname(name) { return name.trim().split(/\s+/).pop(); }
+function initials(name) { return name.trim().split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase(); }
+
 const GP_POINTS = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
 const SPRINT_POINTS = [8, 7, 6, 5, 4, 3, 2, 1];
 

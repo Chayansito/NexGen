@@ -19,8 +19,6 @@ function driverStats(d, raceIds, rank) {
   };
 }
 
-function surname(name) { return name.trim().split(/\s+/).pop(); }
-function initials(name) { return name.trim().split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase(); }
 
 function renderCards(ours, ranked, raceIds) {
   document.getElementById("driver-cards").innerHTML = ours.map(d => {
@@ -34,6 +32,7 @@ function renderCards(ours, ranked, raceIds) {
         <div class="driver-card-top">
           <div>
             <h2>${esc(d.DRIVER)}</h2>
+            <p class="driver-nat">${nationalityLine(d.DRIVER)}</p>
             <p class="driver-card-team">${teamCell(d.TEAM)}</p>
           </div>
           <div class="driver-rank"><span class="mono">${ordinal(s.rank)}</span><small>${d.pts} pts</small></div>
