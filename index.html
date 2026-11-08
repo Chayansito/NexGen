@@ -8,8 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://flagcdn.com">
 <link rel="icon" href="assets/teams/nexgen.png" type="image/png">
-<link rel="preload" href="data/circuits.json" as="fetch" crossorigin>
-<link rel="preload" href="data/setups.json" as="fetch" crossorigin>
+<link rel="preload" href="data/F1_2026.json" as="fetch" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -20,6 +19,7 @@
     <a href="index.html" class="brand"><img src="assets/teams/nexgen.png" alt=""><span>NexGen <b>Racing</b></span></a>
     <nav>
       <a href="index.html" class="nav-link" aria-current="page">Inicio</a>
+      <a href="pilotos.html" class="nav-link">Pilotos</a>
       <a href="setups.html" class="nav-link">Setups</a>
     </nav>
   </div>
@@ -31,44 +31,36 @@
     <div class="home-hero-text">
       <p class="eyebrow"><span class="dot"></span>Equipo filial de Audi · Simracing</p>
       <h1>NexGen <span>Racing</span></h1>
-      <p class="lead">Equipo de simracing, filial de Audi. Aquí reunimos a los pilotos del equipo y los setups que probamos en cada circuito.</p>
+      <p class="lead">Equipo de simracing, filial de Audi. Sigue la clasificación del campeonato, los resultados de nuestros pilotos y los setups que probamos en cada circuito.</p>
       <div class="actions">
-        <a class="btn" href="setups.html">Ver setups</a>
-        <a class="btn-ghost" href="#pilotos">Conocer a los pilotos</a>
+        <a class="btn" href="pilotos.html">Ver pilotos</a>
+        <a class="btn-ghost" href="setups.html">Setups</a>
       </div>
     </div>
     <img class="home-logo" src="assets/teams/nexgen.png" alt="Logo de NexGen Racing" fetchpriority="high">
   </section>
 
-  <section class="stats" aria-label="Resumen">
-    <div><span class="stat-num mono" id="stat-circuits">–</span><span class="stat-label">circuitos con tiempo</span></div>
-    <div><span class="stat-num mono" id="stat-setups">–</span><span class="stat-label">setups registrados</span></div>
-    <div><span class="stat-num mono" id="stat-pilots">–</span><span class="stat-label">pilotos</span></div>
-  </section>
+  <section class="stats" id="nexgen-stats" aria-label="NexGen en el campeonato"></section>
 
-  <section id="pilotos" class="home-section">
-    <h2 class="section-title">Pilotos</h2>
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Piloto</th>
-            <th>Equipo</th>
-            <th>Setups</th>
-            <th>Mejores tiempos</th>
-          </tr>
-        </thead>
-        <tbody id="pilot-rows">
-          <tr><td colspan="5" style="color:var(--muted)">Cargando…</td></tr>
-        </tbody>
-      </table>
+  <section class="standings-grid" id="clasificacion">
+    <div>
+      <h2 class="section-title">Clasificación de pilotos</h2>
+      <div class="table-scroll standings">
+        <table>
+          <thead><tr><th>#</th><th>Piloto</th><th>Equipo</th><th class="th-pts">Pts</th></tr></thead>
+          <tbody id="driver-rows"><tr><td colspan="4" style="color:var(--muted)">Cargando…</td></tr></tbody>
+        </table>
+      </div>
     </div>
-  </section>
-
-  <section class="suggest-box">
-    <p>La base de setups reúne los mejores tiempos de cada circuito, con sus ajustes de alas, frenos, suspensión y downforce.</p>
-    <a class="btn" href="setups.html">Ir a los setups</a>
+    <div>
+      <h2 class="section-title">Clasificación de constructores</h2>
+      <div class="table-scroll standings">
+        <table>
+          <thead><tr><th>#</th><th></th><th>Equipo</th><th class="th-pts">Pts</th></tr></thead>
+          <tbody id="constructor-rows"><tr><td colspan="4" style="color:var(--muted)">Cargando…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
   </section>
 
   <footer>NexGen Racing · Equipo de simracing, filial de Audi.</footer>
@@ -76,6 +68,7 @@
 </main>
 
 <script src="js/config.js" defer></script>
+<script src="js/standings.js" defer></script>
 <script src="js/home.js" defer></script>
 </body>
 </html>

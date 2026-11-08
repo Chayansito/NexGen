@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilotos — NexGen Racing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://flagcdn.com">
+<link rel="icon" href="assets/teams/nexgen.png" type="image/png">
+<link rel="preload" href="data/F1_2026.json" as="fetch" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap">
+    <a href="index.html" class="brand"><img src="assets/teams/nexgen.png" alt=""><span>NexGen <b>Racing</b></span></a>
+    <nav>
+      <a href="index.html" class="nav-link">Inicio</a>
+      <a href="pilotos.html" class="nav-link" aria-current="page">Pilotos</a>
+      <a href="setups.html" class="nav-link">Setups</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="circuit-head">
+    <h1 class="circuit-title">Pilotos</h1>
+    <p class="hero-sub">Los pilotos de NexGen Racing y sus resultados carrera por carrera.</p>
+  </div>
+
+  <section class="driver-cards" id="driver-cards" aria-label="Pilotos de NexGen"></section>
+
+  <h2 class="section-title">Resultados por carrera</h2>
+  <div class="table-scroll results">
+    <table>
+      <thead><tr id="results-head"><th>Carrera</th></tr></thead>
+      <tbody id="results-rows"><tr><td colspan="3" style="color:var(--muted)">Cargando…</td></tr></tbody>
+    </table>
+  </div>
+  <p class="note-small">La posición se calcula a partir de los puntos de cada carrera. “—” significa sin puntos y DNF, abandono.</p>
+
+  <footer>NexGen Racing · Equipo de simracing, filial de Audi.</footer>
+
+</main>
+
+<script src="js/config.js" defer></script>
+<script src="js/standings.js" defer></script>
+<script src="js/pilotos.js" defer></script>
+</body>
+</html>
