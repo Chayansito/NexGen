@@ -330,7 +330,8 @@ td.best { color: var(--record); font-weight: 700; background: rgba(197, 201, 208
   background: var(--glass); backdrop-filter: blur(8px);
   border: 1px solid var(--line); border-radius: var(--radius);
 }
-.season-car { padding: 22px 24px 10px; overflow: hidden; }
+.season-car { display: flex; flex-direction: column; min-height: 300px; padding: 22px 24px 10px; overflow: hidden; }
+.season-car #season-car-slot { margin-top: auto; }
 .season-car-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
 .season-car-img { display: block; width: 100%; max-height: 240px; margin: 6px auto 0; object-fit: contain; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.55)); }
 .season-drivers { display: grid; gap: 20px; grid-auto-rows: 1fr; }
@@ -340,11 +341,15 @@ td.best { color: var(--record); font-weight: 700; background: rgba(197, 201, 208
 
 .standings-grid {
   display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
-  gap: 28px; align-items: start; margin: 0 0 8px; scroll-margin-top: 20px;
+  gap: 28px; align-items: stretch; margin: 0 0 8px; scroll-margin-top: 20px;
 }
 .standings table { min-width: 0; }
 .standings thead th, .standings tbody td { padding: 10px 12px; }
 .standings .team-logo { max-height: 24px; max-width: 52px; }
+.standings-grid > div { display: flex; flex-direction: column; }
+.standings.constructors { flex: 1; }
+.standings.constructors table { height: 100%; }
+.standings.constructors .team-logo { max-height: 30px; max-width: 60px; }
 .th-pts, .pts { text-align: right; }
 .pts { font-weight: 700; }
 tr.is-nexgen { background: linear-gradient(90deg, rgba(245, 5, 55, 0.16), rgba(245, 5, 55, 0.04)); }
@@ -353,16 +358,16 @@ tr.is-nexgen td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 /* ---------- Nacionalidad y bloque de pilotos en la portada ---------- */
 
 .nat { display: inline-flex; align-items: center; color: var(--muted); font-size: 14px; }
-.driver-nat { margin: 0 0 10px; }
-.home-drivers-title { margin-top: 28px; }
-.home-drivers { display: grid; gap: 16px; }
-.home-drivers .btn-ghost { justify-self: start; }
+.driver-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; margin: 0; }
+.driver-meta .team-logo { max-height: 24px; max-width: 46px; }
+.meta-sep { width: 1px; height: 18px; background: var(--line); }
 .mini-driver {
-  display: grid; grid-template-columns: 104px 1fr; overflow: hidden;
+  display: grid; grid-template-columns: 104px 1fr; overflow: hidden; text-decoration: none; color: inherit;
   background: var(--glass); backdrop-filter: blur(8px);
   border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: var(--radius);
 }
-.mini-driver .driver-photo { min-height: 150px; }
+.mini-driver .driver-photo { min-height: 140px; }
+.mini-driver:hover { background: var(--panel-2); border-color: var(--silver); }
 .mini-driver-body { padding: 14px 18px; display: flex; flex-direction: column; justify-content: center; gap: 6px; min-width: 0; }
 .mini-driver h3 { margin: 0; font-size: 21px; font-weight: 800; letter-spacing: -0.3px; line-height: 1.15; }
 .mini-meta { color: var(--text); font-size: 15px; font-weight: 700; }
@@ -416,6 +421,7 @@ tr.is-nexgen td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 
 @media (max-width: 900px) {
   .standings-grid, .season { grid-template-columns: 1fr; }
+  .season-car { min-height: 0; }
   .season-drivers { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 560px) {

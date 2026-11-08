@@ -32,8 +32,7 @@ function renderCards(ours, ranked, raceIds) {
         <div class="driver-card-top">
           <div>
             <h2>${esc(d.DRIVER)}</h2>
-            <p class="driver-nat">${nationalityLine(d.DRIVER)}</p>
-            <p class="driver-card-team">${teamCell(d.TEAM)}</p>
+            <p class="driver-meta">${nationalityLine(d.DRIVER)}<span class="meta-sep"></span>${teamCell(d.TEAM)}</p>
           </div>
           <div class="driver-rank"><span class="mono">${ordinal(s.rank)}</span><small>${d.pts} pts</small></div>
         </div>
