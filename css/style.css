@@ -72,7 +72,7 @@ a { color: inherit; }
   gap: 16px; padding-top: 14px; padding-bottom: 14px;
 }
 .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 600; font-size: 20px; letter-spacing: -0.2px; }
-.brand img { display: block; width: 32px; height: 32px; }
+.brand img { display: block; height: 36px; width: auto; }
 .brand b { font-weight: 800; color: var(--accent); }
 
 .nav-link { color: var(--muted); text-decoration: none; font-weight: 500; font-size: 15px; padding: 6px 2px; border-bottom: 2px solid transparent; }
@@ -188,7 +188,7 @@ tbody tr.empty td { color: var(--muted); }
 }
 
 .team-cell { display: inline-flex; align-items: center; gap: 8px; }
-.team-logo { display: block; width: auto; height: auto; max-height: 34px; max-width: 112px; }
+.team-logo { display: block; width: auto; height: auto; max-height: 34px; max-width: 72px; }
 .team-fallback { font-weight: 600; }
 
 .tyre-chip {
