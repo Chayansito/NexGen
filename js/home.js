@@ -1,55 +1,46 @@
-// Portada del equipo: resumen y tabla de pilotos, calculados con los mismos
-// datos que la página de setups.
-const norm = s => String(s || "").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+// Portada: resumen de NexGen + clasificación de pilotos y de constructores.
 
-function buildSummary(circuits, setups) {
-  const byTrack = groupByTrack(setups);
-  const pilots = new Map();
-  let withTimes = 0;
-
-  for (const row of setups) {
-    const key = norm(row["Driver"]);
-    if (!key) continue;
-    if (!pilots.has(key)) pilots.set(key, { name: row["Driver"].trim(), team: getTeam(row), setups: 0, leads: 0 });
-    pilots.get(key).setups++;
-  }
-
-  for (const c of circuits) {
-    const rows = byTrack.get(c.id);
-    if (!rows || rows.length === 0) continue;
-    withTimes++;
-    const best = rows.reduce((a, b) => (timeToSeconds(a["Lap Time"]) < timeToSeconds(b["Lap Time"]) ? a : b));
-    const p = pilots.get(norm(best["Driver"]));
-    if (p) p.leads++;
-  }
-
-  const ranking = [...pilots.values()].sort((a, b) =>
-    b.leads - a.leads || b.setups - a.setups || a.name.localeCompare(b.name));
-  return { withTimes, total: circuits.length, setups: setups.length, ranking };
+function renderStats({ drivers, constructors }) {
+  const items = [];
+  const ci = constructors.findIndex(c => c.name === OUR_TEAM);
+  if (ci >= 0) items.push({ big: ordinal(ci + 1), label: `Constructores · ${constructors[ci].pts} pts` });
+  drivers.forEach((d, i) => {
+    if (d.TEAM === OUR_TEAM) items.push({ big: ordinal(i + 1), label: `${d.DRIVER} · ${d.pts} pts` });
+  });
+  document.getElementById("nexgen-stats").innerHTML = items.map(it =>
+    `<div><span class="stat-num mono">${esc(it.big)}</span><span class="stat-label">${esc(it.label)}</span></div>`
+  ).join("");
 }
 
-function render({ withTimes, total, setups, ranking }) {
-  document.getElementById("stat-circuits").textContent = `${withTimes}/${total}`;
-  document.getElementById("stat-setups").textContent = setups;
-  document.getElementById("stat-pilots").textContent = ranking.length;
+function renderDrivers(drivers) {
+  document.getElementById("driver-rows").innerHTML = drivers.map((d, i) => `
+    <tr class="${d.TEAM === OUR_TEAM ? "is-nexgen" : ""}">
+      <td class="num-idx">${i + 1}</td>
+      <td><strong>${esc(d.DRIVER)}</strong></td>
+      <td>${teamCell(d.TEAM)}</td>
+      <td class="pts mono">${d.pts}</td>
+    </tr>`).join("");
+}
 
-  document.getElementById("pilot-rows").innerHTML = ranking.length === 0
-    ? `<tr><td colspan="5" style="color:var(--muted)">Todavía no hay pilotos registrados.</td></tr>`
-    : ranking.map((p, i) => `<tr>
-        <td class="num-idx">${i + 1}</td>
-        <td><strong>${esc(p.name)}</strong></td>
-        <td>${teamCell(p.team)}</td>
-        <td class="mono">${p.setups}</td>
-        <td class="mono">${p.leads}</td>
-      </tr>`).join("");
+function renderConstructors(constructors) {
+  document.getElementById("constructor-rows").innerHTML = constructors.map((c, i) => `
+    <tr class="${c.name === OUR_TEAM ? "is-nexgen" : ""}">
+      <td class="num-idx">${i + 1}</td>
+      <td>${teamCell(c.name)}</td>
+      <td><strong>${esc(c.name)}</strong></td>
+      <td class="pts mono">${c.pts}</td>
+    </tr>`).join("");
 }
 
 function showError(err) {
   console.error(err);
-  document.getElementById("pilot-rows").innerHTML =
-    `<tr><td colspan="5" style="color:var(--muted)">No se pudieron cargar los datos. Probá recargar la página.</td></tr>`;
+  const msg = `<tr><td colspan="4" style="color:var(--muted)">No se pudo cargar la clasificación. Probá recargar la página.</td></tr>`;
+  document.getElementById("driver-rows").innerHTML = msg;
+  document.getElementById("constructor-rows").innerHTML = msg;
 }
 
-const circuitsPromise = loadJSON("data/circuits.json");
-circuitsPromise.catch(showError);
-loadSetups(setups => circuitsPromise.then(circuits => render(buildSummary(circuits, setups)))).catch(showError);
+loadStandings().then(s => {
+  renderStats(s);
+  renderDrivers(s.drivers);
+  renderConstructors(s.constructors);
+}).catch(showError);
