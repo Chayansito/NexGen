@@ -90,9 +90,9 @@ function renderRows(rows) {
 
   tbody.innerHTML = sorted.map((r, i) => `<tr>
       <td>${tyreCell(r["Tyre"])}</td>
-      <td class="mono" style="${i === fastS1 ? "color:var(--purple)" : ""}">${esc(r["Sector 1"])}</td>
-      <td class="mono" style="${i === fastS2 ? "color:var(--purple)" : ""}">${esc(r["Sector 2"])}</td>
-      <td class="mono" style="${i === fastS3 ? "color:var(--purple)" : ""}">${esc(r["Sector 3"])}</td>
+      <td class="mono${i === fastS1 ? " best" : ""}">${esc(r["Sector 1"])}</td>
+      <td class="mono${i === fastS2 ? " best" : ""}">${esc(r["Sector 2"])}</td>
+      <td class="mono${i === fastS3 ? " best" : ""}">${esc(r["Sector 3"])}</td>
       <td class="mono">${i === 0 ? `<span class="fastest-badge">${esc(r["Lap Time"])}</span>` : esc(r["Lap Time"])}</td>
       <td class="mono">${esc(r["Wing Setup"] ?? "—")}</td>
       <td class="mono">${esc(r["Brake Balance"] ?? "—")}</td>
