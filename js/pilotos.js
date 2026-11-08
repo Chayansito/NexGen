@@ -19,40 +19,56 @@ function driverStats(d, raceIds, rank) {
   };
 }
 
+function surname(name) { return name.trim().split(/\s+/).pop(); }
+function initials(name) { return name.trim().split(/\s+/).map(w => w[0]).join("").slice(0, 2).toUpperCase(); }
+
 function renderCards(ours, ranked, raceIds) {
   document.getElementById("driver-cards").innerHTML = ours.map(d => {
     const s = driverStats(d, raceIds, ranked.indexOf(d) + 1);
     return `<article class="driver-card">
-      <div class="driver-card-top">
-        <div>
-          <h2>${esc(d.DRIVER)}</h2>
-          <p class="driver-card-team">${teamCell(d.TEAM)}</p>
-        </div>
-        <div class="driver-rank"><span class="mono">${ordinal(s.rank)}</span><small>${d.pts} pts</small></div>
+      <div class="driver-photo">
+        ${photoImg(surname(d.DRIVER) + ".png", d.DRIVER, "driver-photo-img")}
+        <span class="photo-fallback" style="display:none">${esc(initials(d.DRIVER))}</span>
       </div>
-      <dl class="driver-facts">
-        <div><dt>Victorias</dt><dd class="mono">${s.wins}</dd></div>
-        <div><dt>Podios</dt><dd class="mono">${s.podiums}</dd></div>
-        <div><dt>Abandonos</dt><dd class="mono">${s.dnfs}</dd></div>
-      </dl>
+      <div class="driver-card-body">
+        <div class="driver-card-top">
+          <div>
+            <h2>${esc(d.DRIVER)}</h2>
+            <p class="driver-card-team">${teamCell(d.TEAM)}</p>
+          </div>
+          <div class="driver-rank"><span class="mono">${ordinal(s.rank)}</span><small>${d.pts} pts</small></div>
+        </div>
+        <dl class="driver-facts">
+          <div><dt>Victorias</dt><dd class="mono">${s.wins}</dd></div>
+          <div><dt>Podios</dt><dd class="mono">${s.podiums}</dd></div>
+          <div><dt>Abandonos</dt><dd class="mono">${s.dnfs}</dd></div>
+        </dl>
+      </div>
     </article>`;
   }).join("");
 }
 
-function renderResults(ours, raceIds) {
+function raceCell(id, calendar) {
+  const info = calendar[id];
+  if (!info) return `<td class="race-name">${esc(raceLabel(id))}</td>`;
+  const cc = (info.flag.match(/\/([a-z]{2})\.(?:webp|png)/i) || [])[1];
+  return `<td class="race-name"><span class="race-cell">${flagCell(info.flag, cc)}<span><strong>${esc(info.track)}</strong><small>${esc(raceLabel(id))}</small></span></span></td>`;
+}
+
+function renderResults(ours, raceIds, calendar) {
   document.getElementById("results-head").innerHTML =
     `<th>Carrera</th>` + ours.map(d => `<th>${esc(d.DRIVER)}</th>`).join("");
   document.getElementById("results-rows").innerHTML = raceIds.map(id => `
     <tr>
-      <td class="race-name">${esc(raceLabel(id))}</td>
+      ${raceCell(id, calendar)}
       ${ours.map(d => `<td>${resultCell(id, d[id])}</td>`).join("")}
     </tr>`).join("");
 }
 
-loadStandings().then(({ drivers, raceIds }) => {
+loadStandings().then(({ drivers, raceIds, calendar }) => {
   const ours = drivers.filter(d => d.TEAM === OUR_TEAM);
   renderCards(ours, drivers, raceIds);
-  renderResults(ours, raceIds);
+  renderResults(ours, raceIds, calendar);
 }).catch(err => {
   console.error(err);
   document.getElementById("results-rows").innerHTML =

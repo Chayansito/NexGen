@@ -1,15 +1,19 @@
 // Portada: resumen de NexGen + clasificación de pilotos y de constructores.
 
-function renderStats({ drivers, constructors }) {
-  const items = [];
+function renderSeason({ drivers, constructors }) {
   const ci = constructors.findIndex(c => c.name === OUR_TEAM);
-  if (ci >= 0) items.push({ big: ordinal(ci + 1), label: `Constructores · ${constructors[ci].pts} pts` });
-  drivers.forEach((d, i) => {
-    if (d.TEAM === OUR_TEAM) items.push({ big: ordinal(i + 1), label: `${d.DRIVER} · ${d.pts} pts` });
-  });
-  document.getElementById("nexgen-stats").innerHTML = items.map(it =>
-    `<div><span class="stat-num mono">${esc(it.big)}</span><span class="stat-label">${esc(it.label)}</span></div>`
-  ).join("");
+  document.getElementById("season-constructors").innerHTML = ci < 0 ? "" :
+    `<span class="stat-num mono">${ordinal(ci + 1)}</span><span class="stat-label">Constructores · ${constructors[ci].pts} pts</span>`;
+
+  // Foto del auto de la temporada (assets/team/NG-1.png); si no existe, no se muestra.
+  document.getElementById("season-car-slot").innerHTML =
+    photoImg("NG-1.png", "Monoplaza NG-1 de NexGen Racing", "season-car-img");
+
+  document.getElementById("season-drivers").innerHTML = drivers
+    .map((d, i) => ({ d, i }))
+    .filter(({ d }) => d.TEAM === OUR_TEAM)
+    .map(({ d, i }) => `<div class="season-driver"><span class="stat-num mono">${ordinal(i + 1)}</span><span class="stat-label">${esc(d.DRIVER)} · ${d.pts} pts</span></div>`)
+    .join("");
 }
 
 function renderDrivers(drivers) {
@@ -40,7 +44,7 @@ function showError(err) {
 }
 
 loadStandings().then(s => {
-  renderStats(s);
+  renderSeason(s);
   renderDrivers(s.drivers);
   renderConstructors(s.constructors);
 }).catch(showError);

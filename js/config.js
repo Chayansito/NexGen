@@ -163,6 +163,33 @@ function assetUrl(kind, slug) {
   return `assets/${kind}/${encodeURIComponent(name)}.${ext}`;
 }
 
+// ---------- Fotos de pilotos y del auto ----------
+// Se busca primero en assets/team/ y, si no está ahí, en assets/teams/.
+const PHOTO_DIRS = ["assets/team", "assets/teams"];
+
+function photoUrl(file, i = 0) {
+  return `${PHOTO_DIRS[i]}/${encodeURIComponent(file)}`;
+}
+
+// onerror de las <img> de foto: prueba la siguiente carpeta y, si no hay
+// archivo en ninguna, oculta la imagen y muestra el elemento de respaldo.
+function photoNext(img) {
+  const i = parseInt(img.dataset.i || "0", 10) + 1;
+  if (i < PHOTO_DIRS.length) {
+    img.dataset.i = i;
+    img.src = photoUrl(img.dataset.file, i);
+    return;
+  }
+  img.onerror = null;
+  img.style.display = "none";
+  const fb = img.nextElementSibling;
+  if (fb && fb.classList.contains("photo-fallback")) fb.style.display = "grid";
+}
+
+function photoImg(file, alt, cls) {
+  return `<img class="${cls}" src="${photoUrl(file)}" data-file="${esc(file)}" alt="${esc(alt)}" onerror="photoNext(this)">`;
+}
+
 // ---------- Helpers de imagen con respaldo automático ----------
 
 // Bandera: usa el link "flag" de circuits.json (el que ya funcionaba).

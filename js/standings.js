@@ -6,16 +6,12 @@
 
 const OUR_TEAM = "NexGen";
 
-// Nombres opcionales de cada carrera. Ejemplo: { GP1: "Australia", SR1: "China" }
-const RACE_NAMES = {};
-
 const GP_POINTS = [25, 18, 15, 12, 10, 8, 6, 4, 2, 1];
 const SPRINT_POINTS = [8, 7, 6, 5, 4, 3, 2, 1];
 
 function raceLabel(id) {
   const n = id.slice(2);
-  const base = id.startsWith("SR") ? `Sprint ${n}` : `GP ${n}`;
-  return RACE_NAMES[id] ? `${base} · ${RACE_NAMES[id]}` : base;
+  return id.startsWith("SR") ? `Sprint ${n}` : `GP ${n}`;
 }
 
 // Convierte el valor de una celda en { kind, pts, pos }.
@@ -56,8 +52,13 @@ function parseStandings(raw) {
   return { drivers: rankedDrivers, constructors: rankedConstructors, raceIds };
 }
 
+// Calendario (data/GPs.json): circuito y bandera de cada carrera, por id (GP1, SR1...).
 function loadStandings() {
-  return loadJSON("data/F1_2026.json").then(parseStandings);
+  return Promise.all([loadJSON("data/F1_2026.json"), loadJSON("data/GPs.json").catch(() => [])])
+    .then(([raw, gps]) => ({
+      ...parseStandings(raw),
+      calendar: Object.fromEntries(gps.map(g => [g.GP, { track: g.Track, flag: g.Flag }])),
+    }));
 }
 
 function ordinal(n) { return `${n}º`; }
