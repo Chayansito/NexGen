@@ -144,6 +144,25 @@ function groupByTrack(setups) {
   return map;
 }
 
+// Formato de imagen por categoría. Cambia "png" por "webp" (o al revés) cuando
+// quieras; no hay que tocar nada más. Los logos de equipos usan PNG mientras
+// se terminan de preparar los WEBP nuevos.
+const ASSET_EXT = { teams: "png", tyres: "webp", tracks: "webp" };
+
+// Nombres de los PNG originales que no coinciden con el "slug" (aston-martin, etc.)
+const PNG_FILE_NAMES = {
+  "aston-martin": "astonmartin",
+  "red-bull": "redbull",
+  "racing-bulls": "racingbulls",
+  "travis-county": "travis-country",
+};
+
+function assetUrl(kind, slug) {
+  const ext = ASSET_EXT[kind];
+  const name = ext === "png" ? (PNG_FILE_NAMES[slug] || slug) : slug;
+  return `assets/${kind}/${encodeURIComponent(name)}.${ext}`;
+}
+
 // ---------- Helpers de imagen con respaldo automático ----------
 
 // Bandera: usa el link "flag" de circuits.json (el que ya funcionaba).
@@ -170,12 +189,12 @@ function flagCell(flagUrl, countryCode, size = 28) {
     `</span>`;
 }
 
-// Logo del equipo: assets/teams/<nombre-en-minusculas-con-guiones>.webp
+// Logo del equipo: assets/teams/<nombre-en-minusculas-con-guiones>.<png|webp>
 function teamCell(team) {
   if (!team || team === "—") return "—";
   const slug = team.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   return `<span class="team-cell">` +
-    `<img src="assets/teams/${esc(slug)}.webp" class="team-logo" alt="${esc(team)}" loading="lazy" decoding="async" ` +
+    `<img src="${assetUrl("teams", slug)}" class="team-logo" alt="${esc(team)}" loading="lazy" decoding="async" ` +
     `onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">` +
     `<span class="team-fallback" style="display:none">${esc(team)}</span>` +
     `</span>`;
@@ -185,7 +204,7 @@ function teamCell(team) {
 function tyreCell(tyre, color) {
   const slug = (tyre || "unknown").toLowerCase().replace(/[^a-z0-9]+/g, "-");
   return `<span class="tyre-chip">` +
-    `<img src="assets/tyres/${esc(slug)}.webp" class="tyre-img" alt="${esc(tyre || "neumático")}" width="28" height="28" loading="lazy" decoding="async" ` +
+    `<img src="${assetUrl("tyres", slug)}" class="tyre-img" alt="${esc(tyre || "neumático")}" width="28" height="28" loading="lazy" decoding="async" ` +
     `onerror="this.style.display='none';this.nextElementSibling.style.display='inline-block'">` +
     `<span class="tyre-dot" style="display:none;background:${esc(color || "#888")}"></span>` +
     `</span>`;

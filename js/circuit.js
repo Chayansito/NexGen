@@ -19,7 +19,7 @@ function startTrackMap(id) {
     document.getElementById("no-map").style.display = "block";
   };
   img.onload = () => { img.style.display = "block"; };
-  if (id) img.src = `assets/tracks/${encodeURIComponent(id)}.webp`;
+  if (id) img.src = assetUrl("tracks", id);
 }
 
 // Cada piloto aparece una sola vez por circuito, con su vuelta más rápida.
