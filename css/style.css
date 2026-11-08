@@ -8,6 +8,7 @@
   --panel: #151922;
   --panel-2: #1c212c;
   --line: #2a303d;
+  --glass: rgba(21, 25, 34, 0.80);
   --text: #eef1f6;
   --muted: #8e97aa;
   --accent: #ff5a36;      /* acciones: enlaces, botones, hover */
@@ -28,12 +29,27 @@ body {
   font-family: var(--font);
   font-size: 16px;
   line-height: 1.5;
-  background:
-    radial-gradient(900px 380px at 88% -120px, rgba(255, 90, 54, 0.16), transparent 70%),
-    radial-gradient(700px 360px at 5% 140px, rgba(182, 120, 255, 0.08), transparent 70%),
-    var(--bg);
-  background-repeat: no-repeat;
+  background: var(--bg);
   min-height: 100vh;
+}
+
+/* fondo fijo: bandas de librea en diagonal + luces de color */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(112deg,
+      transparent 0 52%,
+      rgba(255, 90, 54, 0.20) 52% 55%,
+      transparent 55% 57%,
+      rgba(255, 255, 255, 0.07) 57% 58.2%,
+      transparent 58.2% 60%,
+      rgba(182, 120, 255, 0.20) 60% 68%,
+      transparent 68%),
+    radial-gradient(1100px 520px at 92% -120px, rgba(255, 90, 54, 0.34), transparent 70%),
+    radial-gradient(800px 520px at 0% 25%, rgba(182, 120, 255, 0.22), transparent 70%),
+    radial-gradient(1000px 520px at 50% 118%, rgba(255, 90, 54, 0.14), transparent 70%);
 }
 
 a { color: inherit; }
@@ -75,8 +91,9 @@ a { color: inherit; }
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(100deg, rgba(182, 120, 255, 0.10), transparent 55%),
-    var(--panel);
+    linear-gradient(100deg, rgba(182, 120, 255, 0.12), transparent 55%),
+    var(--glass);
+  backdrop-filter: blur(8px);
 }
 /* trazo abstracto de circuito, muy tenue, a la derecha */
 .hero::after {
@@ -106,7 +123,8 @@ a { color: inherit; }
 .disclaimer {
   margin: 0 0 24px;
   padding: 14px 16px;
-  background: var(--panel);
+  background: var(--glass);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--line);
   border-left: 4px solid var(--accent);
   border-radius: var(--radius);
@@ -120,7 +138,8 @@ a { color: inherit; }
 .table-scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  background: var(--panel);
+  background: var(--glass);
+  backdrop-filter: blur(8px);
   border: 1px solid var(--line);
   border-radius: var(--radius);
 }
@@ -129,13 +148,13 @@ a { color: inherit; }
 table { width: 100%; border-collapse: collapse; font-size: 15px; }
 
 thead th {
+  background: rgba(28, 33, 44, 0.85);
   text-align: left;
   padding: 14px 14px;
   font-size: 13px;
   font-weight: 600;
   color: var(--muted);
   white-space: nowrap;
-  background: var(--panel-2);
   border-bottom: 1px solid var(--line);
 }
 tbody td { padding: 14px; border-bottom: 1px solid var(--line); white-space: nowrap; }
@@ -169,7 +188,7 @@ tbody tr.empty td { color: var(--muted); }
 }
 
 .team-cell { display: inline-flex; align-items: center; gap: 8px; }
-.team-logo { height: 28px; width: auto; max-width: 96px; object-fit: contain; vertical-align: middle; }
+.team-logo { display: block; width: auto; height: auto; max-height: 34px; max-width: 112px; }
 .team-fallback { font-weight: 600; }
 
 .tyre-chip {
