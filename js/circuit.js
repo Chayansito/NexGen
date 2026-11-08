@@ -22,9 +22,22 @@ function startTrackMap(id) {
   if (id) img.src = `assets/tracks/${encodeURIComponent(id)}.webp`;
 }
 
+// Cada piloto aparece una sola vez por circuito, con su vuelta más rápida.
+// (La Sheet conserva todo el historial; la web solo muestra lo mejor de cada uno.)
+function bestPerDriver(rows) {
+  const best = new Map();
+  rows.forEach((r, i) => {
+    const name = (r["Driver"] || "").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const key = name || `__sin-piloto-${i}`;
+    const cur = best.get(key);
+    if (!cur || timeToSeconds(r["Lap Time"]) < timeToSeconds(cur["Lap Time"])) best.set(key, r);
+  });
+  return [...best.values()];
+}
+
 function draw(circuits, allSetups, id) {
   const circuit = circuits.find(c => c.id === id);
-  const rows = groupByTrack(allSetups).get(id) || [];
+  const rows = bestPerDriver(groupByTrack(allSetups).get(id) || []);
 
   document.getElementById("circuit-title").innerHTML = circuit
     ? `${flagCell(circuit.flag, circuit.countryCode, 36)} ${esc(circuit.name)}`
