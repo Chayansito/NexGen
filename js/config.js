@@ -175,7 +175,7 @@ function teamCell(team) {
   if (!team || team === "—") return "—";
   const slug = team.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   return `<span class="team-cell">` +
-    `<img src="assets/teams/${esc(slug)}.webp" class="team-logo" alt="${esc(team)}" width="32" height="32" loading="lazy" decoding="async" ` +
+    `<img src="assets/teams/${esc(slug)}.webp" class="team-logo" alt="${esc(team)}" loading="lazy" decoding="async" ` +
     `onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">` +
     `<span class="team-fallback" style="display:none">${esc(team)}</span>` +
     `</span>`;
