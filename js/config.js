@@ -4,13 +4,84 @@ const FORM_URL = "https://forms.gle/3FJRtqHYv9FufpoC8";
 // Parámetro prellenado del campo "Circuito" (ej: "entry.123456789") o null.
 const FORM_CIRCUIT_FIELD = null;
 
-// Los datos se leen del archivo local data/setups.json (servido por el CDN de
-// GitHub Pages: rápido y cacheable). Ese archivo lo actualiza solo la GitHub
-// Action de .github/workflows/update-setups.yml a partir de la Google Sheet.
-async function loadSetups() {
-  const res = await fetch("data/setups.json");
-  if (!res.ok) throw new Error("No se pudo cargar data/setups.json");
-  return res.json();
+// Google Sheet publicada como CSV (la misma que ya usabas).
+const SHEET_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vShPTNgVoClsfo6qXxPKgh-uKwPqKDHB8rtaxROlVk1mCZ4_7TKIML5wBxd08xOfP9Q2Gf5b5o2Fi1b/pub?gid=906394055&single=true&output=csv";
+
+const CACHE_KEY = "nexgen_setups_v1";
+const SETUP_COLUMNS = ["Track", "Tyre", "Sector 1", "Sector 2", "Sector 3", "Lap Time",
+  "Wing Setup", "Brake Balance", "Suspension", "Down Force Level", "Driver", "Team"];
+
+function readCache() {
+  try {
+    const c = JSON.parse(localStorage.getItem(CACHE_KEY));
+    return Array.isArray(c) && c.length ? c : null;
+  } catch { return null; }
+}
+function writeCache(rows) {
+  try { localStorage.setItem(CACHE_KEY, JSON.stringify(rows)); } catch {}
+}
+
+// Parser CSV mínimo (maneja comillas y comas dentro de celdas).
+function parseCSV(text) {
+  const rows = [];
+  let row = [], cur = "", q = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (q) {
+      if (ch === '"') { if (text[i + 1] === '"') { cur += '"'; i++; } else q = false; }
+      else cur += ch;
+    } else if (ch === '"') q = true;
+    else if (ch === ",") { row.push(cur); cur = ""; }
+    else if (ch === "\n" || ch === "\r") {
+      if (ch === "\r" && text[i + 1] === "\n") i++;
+      row.push(cur); rows.push(row); row = []; cur = "";
+    } else cur += ch;
+  }
+  if (cur !== "" || row.length) { row.push(cur); rows.push(row); }
+  return rows;
+}
+
+async function fetchSheet() {
+  const res = await fetch(SHEET_CSV_URL);
+  if (!res.ok) throw new Error("Sheet HTTP " + res.status);
+  const table = parseCSV(await res.text());
+  if (table.length < 2) return null;
+  const head = table[0].map(h => h.trim());
+  const rows = table.slice(1)
+    .map(r => {
+      const o = {};
+      SETUP_COLUMNS.forEach(c => { const i = head.indexOf(c); o[c] = i >= 0 ? (r[i] || "").trim() : ""; });
+      return o;
+    })
+    .filter(r => r["Track"] && r["Lap Time"]);
+  return rows.length ? rows : null;
+}
+
+// Estrategia "rápido primero, fresco después":
+//  1) Pinta YA con la caché del navegador, o con data/setups.json si no hay caché.
+//  2) En paralelo pide la Sheet en vivo; cuando llega, guarda caché y vuelve a pintar.
+// onData(rows) puede llamarse 1 o 2 veces. La promesa rechaza solo si NO hubo datos de ninguna fuente.
+function loadSetups(onData) {
+  return new Promise((resolve, reject) => {
+    let last = null, liveDone = false;
+    const cached = readCache();
+    const deliver = rows => {
+      const k = JSON.stringify(rows);
+      if (k === last) return;
+      last = k;
+      Promise.resolve(onData(rows)).catch(console.error);
+    };
+    if (cached) deliver(cached);
+
+    const local = loadJSON("data/setups.json").catch(() => null);
+    const live = fetchSheet().catch(e => { console.warn("Sheet en vivo no disponible:", e); return null; });
+
+    local.then(rows => { if (rows && !cached && !liveDone) deliver(rows); });
+    live.then(rows => { if (rows) { liveDone = true; writeCache(rows); deliver(rows); } });
+
+    Promise.all([local, live]).then(() =>
+      last === null ? reject(new Error("No hay datos disponibles")) : resolve());
+  });
 }
 
 async function loadJSON(path) {
@@ -75,16 +146,26 @@ function groupByTrack(setups) {
 
 // ---------- Helpers de imagen con respaldo automático ----------
 
-// Banderas: flagcdn sirve tamaños chicos (40px, y 80px para pantallas retina).
-function flagCell(countryCode, size = 28) {
+// Bandera: usa el link "flag" de circuits.json (el que ya funcionaba).
+// Si falla, prueba flagcdn; si también falla, muestra el código de país.
+function flagFail(img) {
+  if (!img.dataset.tried && img.dataset.fb) {
+    img.dataset.tried = "1";
+    img.src = img.dataset.fb;
+    return;
+  }
+  img.style.display = "none";
+  img.nextElementSibling.style.display = "inline";
+}
+function flagCell(flagUrl, countryCode, size = 28) {
   const cc = (countryCode || "").toLowerCase();
-  if (!cc) return "";
+  if (!flagUrl && !cc) return "";
   const alt = cc.toUpperCase();
-  const w = size <= 28 ? 40 : 80;
+  const fb = cc ? `https://flagcdn.com/w80/${cc}.png` : "";
+  const src = flagUrl || fb;
   return `<span class="flag-chip">` +
-    `<img src="https://flagcdn.com/w${w}/${cc}.png" srcset="https://flagcdn.com/w${w * 2}/${cc}.png 2x" ` +
-    `class="flag-img" alt="${alt}" width="${size}" height="${Math.round(size * 0.75)}" loading="lazy" decoding="async" ` +
-    `onerror="this.style.display='none';this.nextElementSibling.style.display='inline'">` +
+    `<img src="${esc(src)}" data-fb="${esc(flagUrl ? fb : "")}" class="flag-img" alt="${alt}" ` +
+    `width="${size}" height="${Math.round(size * 0.75)}" loading="lazy" decoding="async" onerror="flagFail(this)">` +
     `<span class="flag-fallback" style="display:none">${alt}</span>` +
     `</span>`;
 }

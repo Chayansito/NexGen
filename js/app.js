@@ -17,7 +17,7 @@ function renderHero(summaries) {
   const top = withData.reduce((a, b) => (timeToSeconds(a.best["Lap Time"]) < timeToSeconds(b.best["Lap Time"]) ? a : b));
   document.getElementById("hero-time").textContent = top.best["Lap Time"];
   document.getElementById("hero-sub").innerHTML =
-    `${flagCell(top.countryCode)} <strong>${esc(top.name)}</strong> — ${esc(top.best["Driver"])} (${esc(getTeam(top.best))})`;
+    `${flagCell(top.flag, top.countryCode)} <strong>${esc(top.name)}</strong> — ${esc(top.best["Driver"])} (${esc(getTeam(top.best))})`;
 }
 
 function renderRows(summaries) {
@@ -26,7 +26,7 @@ function renderRows(summaries) {
     if (c.best) {
       return `<tr class="has-data" data-id="${esc(c.id)}">
         <td class="num-idx">${i + 1}</td>
-        <td>${flagCell(c.countryCode)} ${esc(c.name)}</td>
+        <td>${flagCell(c.flag, c.countryCode)} ${esc(c.name)}</td>
         <td class="mono">${esc(c.best["Lap Time"])}</td>
         <td>${teamCell(getTeam(c.best))}</td>
         <td>${esc(c.best["Driver"])}</td>
@@ -36,7 +36,7 @@ function renderRows(summaries) {
     }
     return `<tr class="empty">
       <td class="num-idx">${i + 1}</td>
-      <td>${flagCell(c.countryCode)} ${esc(c.name)}</td>
+      <td>${flagCell(c.flag, c.countryCode)} ${esc(c.name)}</td>
       <td colspan="4">Sin datos todavía</td>
       <td><a class="suggest-inline" href="${esc(suggestUrl(c.name))}" target="_blank" rel="noopener">Sugerir setup</a></td>
     </tr>`;
@@ -50,15 +50,20 @@ function renderRows(summaries) {
   };
 }
 
-Promise.all([loadJSON("data/circuits.json"), loadSetups()])
-  .then(([circuits, setups]) => {
+function showError(err) {
+  console.error(err);
+  document.getElementById("hero-sub").textContent = "No se pudieron cargar los datos. Probá recargar la página.";
+  document.getElementById("circuit-rows").innerHTML =
+    `<tr><td colspan="7" style="color:var(--muted)">Error al cargar los datos.</td></tr>`;
+}
+
+const circuitsPromise = loadJSON("data/circuits.json");
+circuitsPromise.catch(showError);
+
+loadSetups(setups =>
+  circuitsPromise.then(circuits => {
     const summaries = summarize(circuits, groupByTrack(setups));
     renderHero(summaries);
     renderRows(summaries);
   })
-  .catch(err => {
-    console.error(err);
-    document.getElementById("hero-sub").textContent = "No se pudieron cargar los datos. Probá recargar la página.";
-    document.getElementById("circuit-rows").innerHTML =
-      `<tr><td colspan="7" style="color:var(--muted)">Error al cargar los datos.</td></tr>`;
-  });
+).catch(showError);

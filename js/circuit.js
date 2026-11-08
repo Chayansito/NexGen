@@ -22,20 +22,12 @@ function startTrackMap(id) {
   if (id) img.src = `assets/tracks/${encodeURIComponent(id)}.webp`;
 }
 
-async function init() {
-  const id = getCircuitId();
-  startTrackMap(id);
-
-  const [circuits, allSetups] = await Promise.all([
-    loadJSON("data/circuits.json"),
-    loadSetups(),
-  ]);
-
+function draw(circuits, allSetups, id) {
   const circuit = circuits.find(c => c.id === id);
   const rows = groupByTrack(allSetups).get(id) || [];
 
   document.getElementById("circuit-title").innerHTML = circuit
-    ? `${flagCell(circuit.countryCode, 36)} ${esc(circuit.name)}`
+    ? `${flagCell(circuit.flag, circuit.countryCode, 36)} ${esc(circuit.name)}`
     : "Circuito no encontrado";
 
   document.getElementById("suggest-link").href = suggestUrl(circuit ? circuit.name : "");
@@ -49,6 +41,25 @@ async function init() {
   }
 
   renderRows(rows);
+}
+
+function init() {
+  const id = getCircuitId();
+  startTrackMap(id);
+
+  const circuitsPromise = loadJSON("data/circuits.json");
+  circuitsPromise.catch(showError);
+
+  return loadSetups(setups =>
+    circuitsPromise.then(circuits => draw(circuits, setups, id))
+  );
+}
+
+function showError(err) {
+  console.error(err);
+  document.getElementById("circuit-title").textContent = "No se pudieron cargar los datos";
+  document.getElementById("setup-rows").innerHTML =
+    `<tr><td colspan="11" style="color:var(--muted)">Error al cargar los datos. Probá recargar la página.</td></tr>`;
 }
 
 function renderRows(rows) {
@@ -79,9 +90,4 @@ function renderRows(rows) {
     </tr>`).join("");
 }
 
-init().catch(err => {
-  console.error(err);
-  document.getElementById("circuit-title").textContent = "No se pudieron cargar los datos";
-  document.getElementById("setup-rows").innerHTML =
-    `<tr><td colspan="11" style="color:var(--muted)">Error al cargar los datos. Probá recargar la página.</td></tr>`;
-});
+init().catch(showError);
