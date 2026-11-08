@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexGen Setups — Base de datos de la comunidad</title>
+<title>NexGen Racing — Equipo de simracing, filial de Audi</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://flagcdn.com">
@@ -17,52 +17,65 @@
 
 <header class="topbar">
   <div class="wrap">
-    <a href="index.html" class="brand"><img src="assets/teams/nexgen.png" alt=""><span>NexGen <b>Setups</b></span></a>
-    <nav><a href="index.html" class="nav-link" aria-current="page">Circuitos</a></nav>
+    <a href="index.html" class="brand"><img src="assets/teams/nexgen.png" alt=""><span>NexGen <b>Racing</b></span></a>
+    <nav>
+      <a href="index.html" class="nav-link" aria-current="page">Inicio</a>
+      <a href="setups.html" class="nav-link">Setups</a>
+    </nav>
   </div>
 </header>
 
-<div class="wrap">
+<main class="wrap">
 
-  <div class="hero">
-    <p class="hero-label">Mejor vuelta registrada</p>
-    <p class="hero-time mono" id="hero-time">—</p>
-    <p class="hero-sub" id="hero-sub">Cargando datos...</p>
-  </div>
+  <section class="home-hero">
+    <div class="home-hero-text">
+      <p class="eyebrow"><span class="dot"></span>Equipo filial de Audi · Simracing</p>
+      <h1>NexGen <span>Racing</span></h1>
+      <p class="lead">Equipo de simracing, filial de Audi. Aquí reunimos a los pilotos del equipo y los setups que probamos en cada circuito.</p>
+      <div class="actions">
+        <a class="btn" href="setups.html">Ver setups</a>
+        <a class="btn-ghost" href="#pilotos">Conocer a los pilotos</a>
+      </div>
+    </div>
+    <img class="home-logo" src="assets/teams/nexgen.png" alt="Logo de NexGen Racing" fetchpriority="high">
+  </section>
 
-  <div class="disclaimer">
-    <strong>Antes de mandar tu setup:</strong> todas las respuestas se revisan.
-    Los tiempos que se suban sin una prueba (video o captura) pueden ser
-    eliminados de la tabla.
-  </div>
+  <section class="stats" aria-label="Resumen">
+    <div><span class="stat-num mono" id="stat-circuits">–</span><span class="stat-label">circuitos con tiempo</span></div>
+    <div><span class="stat-num mono" id="stat-setups">–</span><span class="stat-label">setups registrados</span></div>
+    <div><span class="stat-num mono" id="stat-pilots">–</span><span class="stat-label">pilotos</span></div>
+  </section>
 
-  <div class="table-scroll">
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Circuito</th>
-        <th>Mejor tiempo</th>
-        <th>Equipo</th>
-        <th>Piloto</th>
-        <th>Downforce</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id="circuit-rows">
-      <tr><td colspan="7" style="color:var(--muted)">Cargando circuitos...</td></tr>
-    </tbody>
-  </table>
-  </div>
+  <section id="pilotos" class="home-section">
+    <h2 class="section-title">Pilotos</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Piloto</th>
+            <th>Equipo</th>
+            <th>Setups</th>
+            <th>Mejores tiempos</th>
+          </tr>
+        </thead>
+        <tbody id="pilot-rows">
+          <tr><td colspan="5" style="color:var(--muted)">Cargando…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 
-  <footer>
-    Datos mantenidos por la comunidad. ¿Tenés un setup mejor para algún circuito?
-    Usá el enlace "Sugerir setup" en la página de cada circuito para mandarlo.
-  </footer>
+  <section class="suggest-box">
+    <p>La base de setups reúne los mejores tiempos de cada circuito, con sus ajustes de alas, frenos, suspensión y downforce.</p>
+    <a class="btn" href="setups.html">Ir a los setups</a>
+  </section>
 
-</div>
+  <footer>NexGen Racing · Equipo de simracing, filial de Audi.</footer>
+
+</main>
 
 <script src="js/config.js" defer></script>
-<script src="js/app.js" defer></script>
+<script src="js/home.js" defer></script>
 </body>
 </html>
