@@ -15,7 +15,7 @@ js/circuit.js            → lógica de la página de detalle
 js/config.js             → link del Google Form + mapeo piloto→equipo
 data/circuits.json       → lista fija de circuitos (id, nombre, país)
 data/setups.json         → TODOS los intentos, un array plano (esto es lo que se actualiza)
-assets/tracks/           → mapas de circuito (opcional), un .png por circuito
+assets/tracks/           → mapas de circuito (opcional), un .webp por circuito
 assets/teams/            → logos de equipo (opcional)
 assets/tyres/            → imágenes de neumático (opcional)
 ```
@@ -75,7 +75,17 @@ Si agregan un circuito que no está en la lista, sumalo en `circuits.json`
 con su `id` (en minúsculas, igual a como lo escriben en el Form), nombre y
 código de país ISO de 2 letras.
 
-### (Opcional) Automatizar sin copiar y pegar
+### Actualización automática (ya incluida)
+
+`.github/workflows/update-setups.yml` corre cada ~15 min: descarga la Google Sheet
+publicada, la convierte con `scripts/sheet_to_json.py` y, si hubo cambios,
+commitea `data/setups.json`. La web siempre lee ese archivo local (rápido, vía CDN
+de GitHub Pages) y ya no consulta Google Sheets en cada visita. Para forzarlo:
+pestaña **Actions → Actualizar setups → Run workflow**.
+
+Imágenes: usar `.webp` (mapas ≤1200px de ancho, logos 128px, neumáticos 64px).
+
+### (Obsoleto) Automatizar sin copiar y pegar
 
 Si más adelante quieren que el sitio se actualice solo sin tener que pisar
 `setups.json` a mano: publiquen la Google Sheet como CSV (Archivo →

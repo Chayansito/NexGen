@@ -2,11 +2,6 @@ function getCircuitId() {
   return new URLSearchParams(window.location.search).get("id");
 }
 
-async function loadJSON(path) {
-  const res = await fetch(path);
-  return res.json();
-}
-
 function fastestIndex(rows, key) {
   let idx = 0;
   rows.forEach((r, i) => {
@@ -15,18 +10,32 @@ function fastestIndex(rows, key) {
   return idx;
 }
 
+// El id sale de la URL, así que el mapa puede empezar a descargarse YA,
+// sin esperar a que lleguen circuits.json y setups.json.
+function startTrackMap(id) {
+  const img = document.getElementById("track-map");
+  img.onerror = () => {
+    img.style.display = "none";
+    document.getElementById("no-map").style.display = "block";
+  };
+  img.onload = () => { img.style.display = "block"; };
+  if (id) img.src = `assets/tracks/${encodeURIComponent(id)}.webp`;
+}
+
 async function init() {
   const id = getCircuitId();
+  startTrackMap(id);
+
   const [circuits, allSetups] = await Promise.all([
     loadJSON("data/circuits.json"),
     loadSetups(),
   ]);
 
   const circuit = circuits.find(c => c.id === id);
-  const rows = allSetups.filter(s => trackSlug(s["Track"]) === id);
+  const rows = groupByTrack(allSetups).get(id) || [];
 
   document.getElementById("circuit-title").innerHTML = circuit
-    ? `${flagCell(circuit.flag, circuit.countryCode, 36)} ${circuit.name}`
+    ? `${flagCell(circuit.countryCode, 36)} ${esc(circuit.name)}`
     : "Circuito no encontrado";
 
   document.getElementById("suggest-link").href = suggestUrl(circuit ? circuit.name : "");
@@ -34,26 +43,16 @@ async function init() {
   if (rows.length > 0) {
     const best = rows[fastestIndex(rows, "Lap Time")];
     document.getElementById("circuit-sub").innerHTML =
-      `Mejor vuelta: <strong class="mono">${best["Lap Time"]}</strong> — ${best["Driver"]} (${getTeam(best)})`;
+      `Mejor vuelta: <strong class="mono">${esc(best["Lap Time"])}</strong> — ${esc(best["Driver"])} (${esc(getTeam(best))})`;
   } else {
     document.getElementById("circuit-sub").textContent = "Todavía no hay setups cargados para este circuito.";
   }
-
-  // Mapa del circuito (opcional, se agrega manualmente en assets/tracks/)
-  const img = document.getElementById("track-map");
-  img.onerror = () => {
-    img.style.display = "none";
-    document.getElementById("no-map").style.display = "block";
-  };
-  img.onload = () => { img.style.display = "block"; };
-  img.src = `assets/tracks/${id}.png`;
 
   renderRows(rows);
 }
 
 function renderRows(rows) {
   const tbody = document.getElementById("setup-rows");
-  tbody.innerHTML = "";
 
   if (rows.length === 0) {
     tbody.innerHTML = `<tr><td colspan="11" style="color:var(--muted)">Nadie subió un setup todavía. ¡Sé el primero!</td></tr>`;
@@ -65,23 +64,24 @@ function renderRows(rows) {
   const fastS2 = fastestIndex(sorted, "Sector 2");
   const fastS3 = fastestIndex(sorted, "Sector 3");
 
-  sorted.forEach((r, i) => {
-    const tr = document.createElement("tr");
-    tr.innerHTML = `
+  tbody.innerHTML = sorted.map((r, i) => `<tr>
       <td>${tyreCell(r["Tyre"])}</td>
-      <td class="mono" style="${i === fastS1 ? "color:var(--purple)" : ""}">${r["Sector 1"]}</td>
-      <td class="mono" style="${i === fastS2 ? "color:var(--purple)" : ""}">${r["Sector 2"]}</td>
-      <td class="mono" style="${i === fastS3 ? "color:var(--purple)" : ""}">${r["Sector 3"]}</td>
-      <td class="mono">${i === 0 ? `<span class="fastest-badge">${r["Lap Time"]}</span>` : r["Lap Time"]}</td>
-      <td class="mono">${r["Wing Setup"] ?? "—"}</td>
-      <td class="mono">${r["Brake Balance"] ?? "—"}</td>
-      <td class="mono">${r["Suspension"] ?? "—"}</td>
-      <td class="mono">${r["Down Force Level"] ?? "—"}</td>
-      <td>${r["Driver"]}</td>
+      <td class="mono" style="${i === fastS1 ? "color:var(--purple)" : ""}">${esc(r["Sector 1"])}</td>
+      <td class="mono" style="${i === fastS2 ? "color:var(--purple)" : ""}">${esc(r["Sector 2"])}</td>
+      <td class="mono" style="${i === fastS3 ? "color:var(--purple)" : ""}">${esc(r["Sector 3"])}</td>
+      <td class="mono">${i === 0 ? `<span class="fastest-badge">${esc(r["Lap Time"])}</span>` : esc(r["Lap Time"])}</td>
+      <td class="mono">${esc(r["Wing Setup"] ?? "—")}</td>
+      <td class="mono">${esc(r["Brake Balance"] ?? "—")}</td>
+      <td class="mono">${esc(r["Suspension"] ?? "—")}</td>
+      <td class="mono">${esc(r["Down Force Level"] ?? "—")}</td>
+      <td>${esc(r["Driver"])}</td>
       <td>${teamCell(getTeam(r))}</td>
-    `;
-    tbody.appendChild(tr);
-  });
+    </tr>`).join("");
 }
 
-init();
+init().catch(err => {
+  console.error(err);
+  document.getElementById("circuit-title").textContent = "No se pudieron cargar los datos";
+  document.getElementById("setup-rows").innerHTML =
+    `<tr><td colspan="11" style="color:var(--muted)">Error al cargar los datos. Probá recargar la página.</td></tr>`;
+});
