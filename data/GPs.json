@@ -1,0 +1,152 @@
+[
+  {
+    "GP": "GP1",
+    "Track": "Melbourne, Australia",
+    "Flag": "https://flagpedia.net/data/flags/w580/au.webp"
+  },
+  {
+    "GP": "SR1",
+    "Track": "Shanghai, China",
+    "Flag": "https://flagpedia.net/data/flags/w580/cn.webp"
+  },
+  {
+    "GP": "GP2",
+    "Track": "Shanghai, China",
+    "Flag": "https://flagpedia.net/data/flags/w580/cn.webp"
+  },
+  {
+    "GP": "GP3",
+    "Track": "Suzuka, Japón",
+    "Flag": "https://flagpedia.net/data/flags/w580/jp.webp"
+  },
+  {
+    "GP": "GP4",
+    "Track": "Sakhir, Bahréin",
+    "Flag": "https://flagpedia.net/data/flags/w580/bh.webp"
+  },
+  {
+    "GP": "GP5",
+    "Track": "Jeddah, Arabia Saudí",
+    "Flag": "https://flagpedia.net/data/flags/w580/sa.webp"
+  },
+  {
+    "GP": "SR2",
+    "Track": "Miami, Estados Unidos",
+    "Flag": "https://flagpedia.net/data/flags/w580/us.webp"
+  },
+  {
+    "GP": "GP6",
+    "Track": "Miami, Estados Unidos",
+    "Flag": "https://flagpedia.net/data/flags/w580/us.webp"
+  },
+  {
+    "GP": "SR3",
+    "Track": "Montreal, Canadá",
+    "Flag": "https://flagpedia.net/data/flags/w580/ca.webp"
+  },
+  {
+    "GP": "GP7",
+    "Track": "Montreal, Canadá",
+    "Flag": "https://flagpedia.net/data/flags/w580/ca.webp"
+  },
+  {
+    "GP": "GP8",
+    "Track": "Montecarlo, Mónaco",
+    "Flag": "https://flagpedia.net/data/flags/w580/mc.webp"
+  },
+  {
+    "GP": "GP9",
+    "Track": "Montmeló, España",
+    "Flag": "https://flagpedia.net/data/flags/w580/es.webp"
+  },
+  {
+    "GP": "GP10",
+    "Track": "Knittelfeld, Austria",
+    "Flag": "https://flagpedia.net/data/flags/w580/at.webp"
+  },
+  {
+    "GP": "SR4",
+    "Track": "Silverstone",
+    "Flag": "https://flagpedia.net/data/flags/w580/gb.webp"
+  },
+  {
+    "GP": "GP11",
+    "Track": "Silverstone",
+    "Flag": "https://flagpedia.net/data/flags/w580/gb.webp"
+  },
+  {
+    "GP": "GP12",
+    "Track": "Spa-Francorchamps",
+    "Flag": "https://flagpedia.net/data/flags/w580/be.webp"
+  },
+  {
+    "GP": "GP13",
+    "Track": "Mogyoród, Hungría",
+    "Flag": "https://flagpedia.net/data/flags/w580/hu.webp"
+  },
+  {
+    "GP": "SR5",
+    "Track": "Países Bajos",
+    "Flag": "https://flagpedia.net/data/flags/w580/nl.webp"
+  },
+  {
+    "GP": "GP14",
+    "Track": "Países Bajos",
+    "Flag": "https://flagpedia.net/data/flags/w580/nl.webp"
+  },
+  {
+    "GP": "GP15",
+    "Track": "Monza, Italia",
+    "Flag": "https://flagpedia.net/data/flags/w580/it.webp"
+  },
+  {
+    "GP": "GP16",
+    "Track": "Madrid, España",
+    "Flag": "https://flagpedia.net/data/flags/w580/es.webp"
+  },
+  {
+    "GP": "GP17",
+    "Track": "Bakú, Azerbaiyán",
+    "Flag": "https://flagpedia.net/data/flags/w580/az.webp"
+  },
+  {
+    "GP": "SR6",
+    "Track": "Singapur, Singapur",
+    "Flag": "https://flagpedia.net/data/flags/w580/sg.webp"
+  },
+  {
+    "GP": "GP18",
+    "Track": "Singapur, Singapur",
+    "Flag": "https://flagpedia.net/data/flags/w580/sg.webp"
+  },
+  {
+    "GP": "GP19",
+    "Track": "Travis County, Austin",
+    "Flag": "https://flagpedia.net/data/flags/w580/us.webp"
+  },
+  {
+    "GP": "GP20",
+    "Track": "CDMX, México",
+    "Flag": "https://flagpedia.net/data/flags/w580/mx.webp"
+  },
+  {
+    "GP": "GP21",
+    "Track": "São Paulo, Brasil",
+    "Flag": "https://flagpedia.net/data/flags/w580/br.webp"
+  },
+  {
+    "GP": "GP22",
+    "Track": "Las Vegas",
+    "Flag": "https://flagpedia.net/data/flags/w580/us.webp"
+  },
+  {
+    "GP": "GP23",
+    "Track": "Losail, Qatar",
+    "Flag": "https://flagpedia.net/data/flags/w580/qa.webp"
+  },
+  {
+    "GP": "GP24",
+    "Track": "Abu Dhabi",
+    "Flag": "https://flagpedia.net/data/flags/w580/ae.webp"
+  }
+]
