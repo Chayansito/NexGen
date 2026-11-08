@@ -1,19 +1,19 @@
 /* NexGen Setups — sistema visual único para todas las páginas.
-   Grafito + blanco (como el logo), un solo acento naranja para lo clickeable,
-   y morado SOLO para récords (convención de cronometraje de F1). */
+   Paleta Audi (NexGen es filial): negro carbón, rojo Audi para lo clickeable,
+   plata/platino para récords y blanco para el texto. */
 
 :root {
   color-scheme: dark;
-  --bg: #0d0f13;
-  --panel: #151922;
-  --panel-2: #1c212c;
-  --line: #2a303d;
-  --glass: rgba(21, 25, 34, 0.80);
-  --text: #eef1f6;
-  --muted: #8e97aa;
-  --accent: #ff5a36;      /* acciones: enlaces, botones, hover */
-  --record: #b678ff;      /* mejor vuelta / sector más rápido */
-  --purple: var(--record); /* alias: circuit.js pinta el sector más rápido con este nombre */
+  --bg: #0a0a0b;
+  --panel: #141416;
+  --panel-2: #1c1c20;
+  --line: #2d2e34;
+  --glass: rgba(20, 20, 22, 0.80);
+  --text: #f5f6f8;
+  --muted: #9da1ab;
+  --accent: #f50537;      /* rojo Audi: acciones, enlaces, hover */
+  --silver: #c5c9d0;      /* plata Audi */
+  --record: #eceef1;      /* platino: mejor vuelta / sector más rápido */
   --radius: 10px;
   --radius-sm: 6px;
   --font: 'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -41,15 +41,15 @@ body::before {
   background:
     linear-gradient(112deg,
       transparent 0 52%,
-      rgba(255, 90, 54, 0.20) 52% 55%,
+      rgba(245, 5, 55, 0.20) 52% 55%,
       transparent 55% 57%,
       rgba(255, 255, 255, 0.07) 57% 58.2%,
       transparent 58.2% 60%,
-      rgba(182, 120, 255, 0.20) 60% 68%,
+      rgba(197, 201, 208, 0.20) 60% 68%,
       transparent 68%),
-    radial-gradient(1100px 520px at 92% -120px, rgba(255, 90, 54, 0.34), transparent 70%),
-    radial-gradient(800px 520px at 0% 25%, rgba(182, 120, 255, 0.22), transparent 70%),
-    radial-gradient(1000px 520px at 50% 118%, rgba(255, 90, 54, 0.14), transparent 70%);
+    radial-gradient(1100px 520px at 92% -120px, rgba(245, 5, 55, 0.34), transparent 70%),
+    radial-gradient(800px 520px at 0% 25%, rgba(197, 201, 208, 0.22), transparent 70%),
+    radial-gradient(1000px 520px at 50% 118%, rgba(245, 5, 55, 0.14), transparent 70%);
 }
 
 a { color: inherit; }
@@ -60,7 +60,7 @@ a { color: inherit; }
 
 /* ---------- Encabezado (igual en todas las páginas) ---------- */
 
-.topbar { position: relative; border-bottom: 1px solid var(--line); background: rgba(13, 15, 19, 0.7); backdrop-filter: blur(6px); }
+.topbar { position: relative; border-bottom: 1px solid var(--line); background: rgba(10, 10, 11, 0.72); backdrop-filter: blur(6px); }
 .topbar::after {
   content: "";
   position: absolute; left: 0; bottom: -1px;
@@ -86,12 +86,12 @@ a { color: inherit; }
   padding: 26px 28px 28px;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-left: 4px solid var(--record);
+  border-left: 4px solid var(--accent);
   border-radius: var(--radius);
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(100deg, rgba(182, 120, 255, 0.12), transparent 55%),
+    linear-gradient(100deg, rgba(197, 201, 208, 0.12), transparent 55%),
     var(--glass);
   backdrop-filter: blur(8px);
 }
@@ -101,7 +101,7 @@ a { color: inherit; }
   position: absolute; right: -10px; top: 50%;
   width: min(46%, 380px); aspect-ratio: 5 / 3;
   transform: translateY(-50%);
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240' fill='none' stroke='%23b678ff' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M60 170 C40 110 90 60 150 70 C200 78 210 130 260 120 C320 108 300 40 350 50 C390 58 380 130 340 160 C300 190 250 210 190 200 C130 192 80 220 60 170 Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240' fill='none' stroke='%23c5c9d0' stroke-width='14' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M60 170 C40 110 90 60 150 70 C200 78 210 130 260 120 C320 108 300 40 350 50 C390 58 380 130 340 160 C300 190 250 210 190 200 C130 192 80 220 60 170 Z'/%3E%3C/svg%3E") center / contain no-repeat;
   opacity: 0.13;
   pointer-events: none;
 }
@@ -114,8 +114,11 @@ a { color: inherit; }
   font-size: clamp(44px, 11vw, 88px);
   line-height: 1.05;
   letter-spacing: -2px;
-  color: var(--record);
-  text-shadow: 0 0 36px rgba(182, 120, 255, 0.45);
+  background: linear-gradient(180deg, #ffffff 15%, #aeb3bc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 22px rgba(197, 201, 208, 0.28));
 }
 .hero-sub { margin: 10px 0 0; color: var(--muted); font-size: 16px; }
 .hero-sub strong { color: var(--text); font-weight: 600; }
@@ -148,7 +151,7 @@ a { color: inherit; }
 table { width: 100%; border-collapse: collapse; font-size: 15px; }
 
 thead th {
-  background: rgba(28, 33, 44, 0.85);
+  background: rgba(28, 28, 32, 0.88);
   text-align: left;
   padding: 14px 14px;
   font-size: 13px;
@@ -161,10 +164,12 @@ tbody td { padding: 14px; border-bottom: 1px solid var(--line); white-space: now
 tbody tr:last-child td { border-bottom: 0; }
 
 tbody tr.has-data { cursor: pointer; }
-#circuit-rows tr.has-data { background: linear-gradient(90deg, rgba(182, 120, 255, 0.09), transparent 50%); }
+#circuit-rows tr.has-data { background: linear-gradient(90deg, rgba(197, 201, 208, 0.09), transparent 50%); }
 tbody tr.has-data:hover td, #circuit-rows tr.has-data:hover td { background: var(--panel-2); }
 tbody tr.has-data:hover td:first-child { box-shadow: inset 3px 0 0 var(--accent); }
 tbody tr.empty td { color: var(--muted); }
+
+td.best { color: var(--record); font-weight: 700; background: rgba(197, 201, 208, 0.10); box-shadow: inset 0 -2px 0 var(--silver); }
 
 .num-idx { font-family: var(--mono); font-size: 13px; color: var(--muted); width: 48px; }
 .arrow { color: var(--accent); font-weight: 700; text-align: right; }
@@ -173,8 +178,8 @@ tbody tr.empty td { color: var(--muted); }
   display: inline-block;
   padding: 3px 10px;
   border-radius: var(--radius-sm);
-  background: var(--record);
-  color: #1d0838;
+  background: linear-gradient(180deg, #f6f7f9, #b9bdc5);
+  color: #111214;
   font-weight: 700;
 }
 
@@ -208,13 +213,13 @@ tbody tr.empty td { color: var(--muted); }
   padding: 11px 22px;
   border-radius: var(--radius-sm);
   background: var(--accent);
-  color: #1b0a05;
+  color: #fff;
   font-weight: 700;
   font-size: 15px;
   text-decoration: none;
   white-space: nowrap;
 }
-.btn:hover { background: #ff7152; }
+.btn:hover { background: #ff2a58; }
 
 .suggest-inline {
   display: inline-block;
@@ -226,7 +231,7 @@ tbody tr.empty td { color: var(--muted); }
   font-size: 14px;
   text-decoration: none;
 }
-.suggest-inline:hover { background: rgba(255, 90, 54, 0.12); }
+.suggest-inline:hover { background: rgba(245, 5, 55, 0.12); }
 
 /* ---------- Página de circuito ---------- */
 
