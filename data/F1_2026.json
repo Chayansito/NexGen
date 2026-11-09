@@ -2,7 +2,7 @@
   {
     "DRIVER": "Lando Norris",
     "TEAM": "McLaren",
-    "PTS": "50",
+    "PTS": "56",
     "GP1": "6",
     "SR1": "2",
     "GP2": "DNF",
@@ -14,7 +14,8 @@
     "SR3": "1",
     "GP7": "DNF",
     "GP8": "2",
-    "GP9": "8"
+    "GP9": "8",
+    "GP10": "6"
   },
   {
     "DRIVER": "Oscar Piastri",
@@ -31,12 +32,13 @@
     "SR3": "DNF",
     "GP7": "12",
     "GP8": "-",
-    "GP9": "4"
+    "GP9": "4",
+    "GP10": "-"
   },
   {
     "DRIVER": "George Russell",
     "TEAM": "Mercedes",
-    "PTS": "137",
+    "PTS": "149",
     "GP1": "18",
     "SR1": "6",
     "GP2": "18",
@@ -48,12 +50,13 @@
     "SR3": "8",
     "GP7": "18",
     "GP8": "18",
-    "GP9": "15"
+    "GP9": "15",
+    "GP10": "12"
   },
   {
     "DRIVER": "Kimi Antonelli",
     "TEAM": "Mercedes",
-    "PTS": "128",
+    "PTS": "146",
     "GP1": "25",
     "SR1": "7",
     "GP2": "8",
@@ -65,12 +68,13 @@
     "SR3": "DNF",
     "GP7": "25",
     "GP8": "6",
-    "GP9": "18"
+    "GP9": "18",
+    "GP10": "18"
   },
   {
     "DRIVER": "Max Verstappen",
     "TEAM": "Red Bull",
-    "PTS": "91",
+    "PTS": "106",
     "GP1": "15",
     "SR1": "8",
     "GP2": "-",
@@ -82,7 +86,8 @@
     "SR3": "7",
     "GP7": "15",
     "GP8": "-",
-    "GP9": "12"
+    "GP9": "12",
+    "GP10": "15"
   },
   {
     "DRIVER": "Isack Hadjar",
@@ -99,12 +104,13 @@
     "SR3": "-",
     "GP7": "-",
     "GP8": "8",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "-"
   },
   {
     "DRIVER": "Charles Leclerc",
     "TEAM": "Ferrari",
-    "PTS": "110",
+    "PTS": "118",
     "GP1": "8",
     "SR1": "-",
     "GP2": "12",
@@ -116,12 +122,13 @@
     "SR3": "4",
     "GP7": "10",
     "GP8": "DNF",
-    "GP9": "6"
+    "GP9": "6",
+    "GP10": "8"
   },
   {
     "DRIVER": "Lewis Hamilton",
     "TEAM": "Ferrari",
-    "PTS": "72",
+    "PTS": "82",
     "GP1": "12",
     "SR1": "-",
     "GP2": "2",
@@ -133,7 +140,8 @@
     "SR3": "5",
     "GP7": "DNF",
     "GP8": "12",
-    "GP9": "10"
+    "GP9": "10",
+    "GP10": "10"
   },
   {
     "DRIVER": "Alexander Albon",
@@ -150,7 +158,8 @@
     "SR3": "3",
     "GP7": "DNF",
     "GP8": "-",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "-"
   },
   {
     "DRIVER": "Carlos Sainz",
@@ -167,7 +176,8 @@
     "SR3": "-",
     "GP7": "-",
     "GP8": "-",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "-"
   },
   {
     "DRIVER": "Liam Lawson",
@@ -184,7 +194,8 @@
     "SR3": "2",
     "GP7": "-",
     "GP8": "-",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "DNF"
   },
   {
     "DRIVER": "Arvid Lindblad",
@@ -201,7 +212,8 @@
     "SR3": "DNF",
     "GP7": "6",
     "GP8": "-",
-    "GP9": "1"
+    "GP9": "1",
+    "GP10": "-"
   },
   {
     "DRIVER": "Lance Stroll",
@@ -218,7 +230,8 @@
     "SR3": "-",
     "GP7": "DNF",
     "GP8": "-",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "-"
   },
   {
     "DRIVER": "Fernando Alonso",
@@ -235,12 +248,13 @@
     "SR3": "-",
     "GP7": "-",
     "GP8": "DNF",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "-"
   },
   {
     "DRIVER": "Oliver Bearman",
     "TEAM": "Haas",
-    "PTS": "26",
+    "PTS": "30",
     "GP1": "1",
     "SR1": "3",
     "GP2": "DNF",
@@ -252,7 +266,8 @@
     "SR3": "DNF",
     "GP7": "-",
     "GP8": "10",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "4"
   },
   {
     "DRIVER": "Esteban Ocon",
@@ -269,12 +284,13 @@
     "SR3": "-",
     "GP7": "4",
     "GP8": "-",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "-"
   },
   {
     "DRIVER": "Nico Hulkenberg",
     "TEAM": "Audi",
-    "PTS": "59",
+    "PTS": "60",
     "GP1": "-",
     "SR1": "-",
     "GP2": "25",
@@ -286,12 +302,13 @@
     "SR3": "-",
     "GP7": "-",
     "GP8": "DNF",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "1"
   },
   {
     "DRIVER": "Gabriel Bortoleto",
     "TEAM": "Audi",
-    "PTS": "17",
+    "PTS": "19",
     "GP1": "-",
     "SR1": "DNF",
     "GP2": "-",
@@ -303,7 +320,8 @@
     "SR3": "-",
     "GP7": "DNF",
     "GP8": "15",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "2"
   },
   {
     "DRIVER": "Pierre Gasly",
@@ -320,7 +338,8 @@
     "SR3": "-",
     "GP7": "1",
     "GP8": "-",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "DNF"
   },
   {
     "DRIVER": "Franco Colapinto",
@@ -337,7 +356,8 @@
     "SR3": "-",
     "GP7": "-",
     "GP8": "1",
-    "GP9": "DNF"
+    "GP9": "DNF",
+    "GP10": "DNF"
   },
   {
     "DRIVER": "Sergio Perez",
@@ -354,7 +374,8 @@
     "SR3": "-",
     "GP7": "-",
     "GP8": "-",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "-"
   },
   {
     "DRIVER": "Valtteri Bottas",
@@ -371,12 +392,13 @@
     "SR3": "-",
     "GP7": "2",
     "GP8": "4",
-    "GP9": "-"
+    "GP9": "-",
+    "GP10": "-"
   },
   {
     "DRIVER": "Gabriel Rodriguez",
     "TEAM": "NexGen",
-    "PTS": "136",
+    "PTS": "161",
     "GP1": "10",
     "SR1": "4",
     "GP2": "15",
@@ -388,7 +410,8 @@
     "SR3": "6",
     "GP7": "DNF",
     "GP8": "25",
-    "GP9": "25"
+    "GP9": "25",
+    "GP10": "25"
   },
   {
     "DRIVER": "Dani Hoffmann",
@@ -405,7 +428,8 @@
     "SR3": "DNF",
     "GP7": "8",
     "GP8": "DNF",
-    "GP9": "2"
+    "GP9": "2",
+    "GP10": "-"
   },
   {
     "field1": "Logo",
@@ -414,19 +438,19 @@
   },
   {
     "DRIVER": "McLaren Formula 1 Team",
-    "field3": "92"
+    "field3": "98"
   },
   {
     "DRIVER": "Mercedes-AMG PETRONAS Formula One Team",
-    "field3": "265"
+    "field3": "295"
   },
   {
     "DRIVER": "Oracle Red Bull Racing",
-    "field3": "122"
+    "field3": "137"
   },
   {
     "DRIVER": "Scuderia Ferrari HP",
-    "field3": "182"
+    "field3": "200"
   },
   {
     "DRIVER": "Atlassian Williams Racing",
@@ -442,11 +466,11 @@
   },
   {
     "DRIVER": "MoneyGram Haas F1 Team",
-    "field3": "34"
+    "field3": "38"
   },
   {
     "DRIVER": "Audi Revolut F1 Team",
-    "field3": "76"
+    "field3": "79"
   },
   {
     "DRIVER": "BWT Alpine Formula 1 Team",
@@ -458,6 +482,6 @@
   },
   {
     "DRIVER": "NexGen Racing",
-    "field3": "154"
+    "field3": "179"
   }
 ]
